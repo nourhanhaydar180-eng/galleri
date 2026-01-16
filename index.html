@@ -5,53 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>استوديو الذكريات الشخصية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Cairo', sans-serif;
         }
         
         :root {
-            --primary-color: #4a6fa5;
-            --secondary-color: #166088;
-            --accent-color: #ff7e5f;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --primary-color: #FF9A3D;
+            --secondary-color: #FF6F3D;
+            --accent-color: #FFC93D;
+            --light-color: #FFF9F0;
+            --dark-color: #333333;
+            --success-color: #4CAF50;
+            --danger-color: #FF5252;
+            --info-color: #2196F3;
+            --shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 12px 35px rgba(0, 0, 0, 0.15);
+            --gradient-sun: linear-gradient(135deg, #FF9A3D 0%, #FF6F3D 50%, #FFC93D 100%);
+            --gradient-light: linear-gradient(135deg, #FFF9F0 0%, #FFEEDD 100%);
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            background: var(--gradient-light);
             color: var(--dark-color);
             min-height: 100vh;
             padding-bottom: 60px;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
         
         header {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            background: var(--gradient-sun);
             color: white;
-            padding: 20px;
-            border-radius: 0 0 15px 15px;
-            box-shadow: var(--shadow);
+            padding: 25px;
+            border-radius: 0 0 25px 25px;
+            box-shadow: var(--shadow-heavy);
             margin-bottom: 30px;
-            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
         
         header h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         
         header h1 i {
@@ -59,54 +96,118 @@
         }
         
         .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 25px auto 0;
+            position: relative;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 50px;
             font-size: 1.1rem;
-            opacity: 0.9;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .search-btn {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-50%) scale(1.1);
         }
         
         .tabs {
             display: flex;
             background-color: white;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
+            border: 1px solid rgba(255, 154, 61, 0.2);
         }
         
         .tab {
             flex: 1;
             text-align: center;
-            padding: 15px 10px;
+            padding: 18px 10px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
             color: var(--dark-color);
-            border-bottom: 3px solid transparent;
-            min-width: 120px;
+            border-bottom: 4px solid transparent;
+            min-width: 140px;
+            position: relative;
+            overflow: hidden;
         }
         
         .tab:hover {
-            background-color: #f1f5f9;
+            background-color: #FFF5E8;
         }
         
         .tab.active {
             color: var(--primary-color);
-            border-bottom: 3px solid var(--primary-color);
-            background-color: #f8f9fa;
+            border-bottom: 4px solid var(--primary-color);
+            background-color: #FFF9F0;
         }
         
         .tab i {
             margin-left: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .tab-badge {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 10px;
         }
         
         .content-area {
             background-color: white;
-            border-radius: 15px;
+            border-radius: 20px;
             box-shadow: var(--shadow);
-            padding: 25px;
-            margin-bottom: 25px;
-            min-height: 500px;
+            padding: 30px;
+            margin-bottom: 30px;
+            min-height: 600px;
             display: none;
+            border: 1px solid rgba(255, 154, 61, 0.1);
         }
         
         .content-area.active {
@@ -115,77 +216,157 @@
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
         h2 {
             color: var(--primary-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eee;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #FFEEDD;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-size: 1.8rem;
+        }
+        
+        h2 i {
+            background: var(--gradient-sun);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .person-card {
-            background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-            border-right: 5px solid var(--primary-color);
-            transition: transform 0.3s ease;
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .person-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-sun);
         }
         
         .person-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-heavy);
+            border-color: rgba(255, 154, 61, 0.3);
         }
         
         .person-header {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .person-avatar {
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--primary-color);
-            margin-left: 15px;
+            border: 4px solid var(--primary-color);
+            margin-left: 20px;
+            box-shadow: 0 5px 15px rgba(255, 154, 61, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .person-card:hover .person-avatar {
+            transform: scale(1.05);
+            border-color: var(--accent-color);
+        }
+        
+        .person-info {
+            flex: 1;
         }
         
         .person-info h3 {
             color: var(--secondary-color);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 1.5rem;
         }
         
         .person-info p {
             color: #666;
-            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .person-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .person-tag {
+            background: #FFEEDD;
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .person-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .album-section {
+            margin-top: 30px;
+        }
+        
+        .album-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .album-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--secondary-color);
+            font-size: 1.4rem;
         }
         
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
             margin-top: 15px;
         }
         
         .gallery-item {
             position: relative;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            height: 150px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            height: 180px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
         }
         
         .gallery-item:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-color);
         }
         
         .gallery-item img, .gallery-item video {
@@ -199,140 +380,230 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
             color: white;
-            padding: 10px;
-            font-size: 0.85rem;
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        
+        .gallery-actions {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            gap: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-actions {
+            opacity: 1;
         }
         
         .upload-area {
             border: 3px dashed var(--primary-color);
-            border-radius: 12px;
-            padding: 40px 20px;
+            border-radius: 18px;
+            padding: 50px 20px;
             text-align: center;
-            margin: 20px 0;
-            background-color: #f8f9fa;
+            margin: 25px 0;
+            background-color: #FFF9F0;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
         }
         
         .upload-area:hover {
-            background-color: #e9ecef;
+            background-color: #FFEEDD;
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
         }
         
         .upload-area i {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
+            font-size: 3.5rem;
+            background: var(--gradient-sun);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
         }
         
         .upload-area h3 {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: var(--secondary-color);
+            font-size: 1.4rem;
+        }
+        
+        .upload-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
         
         .btn {
-            background-color: var(--primary-color);
+            background: var(--gradient-sun);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 14px 30px;
+            border-radius: 12px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             margin: 5px;
+            box-shadow: 0 5px 15px rgba(255, 154, 61, 0.3);
         }
         
         .btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 154, 61, 0.4);
         }
         
-        .btn-accent {
-            background-color: var(--accent-color);
+        .btn:active {
+            transform: translateY(0);
         }
         
-        .btn-accent:hover {
-            background-color: #ff6b47;
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color) 0%, #2E7D32 100%);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger-color) 0%, #C62828 100%);
+        }
+        
+        .btn-info {
+            background: linear-gradient(135deg, var(--info-color) 0%, #0D47A1 100%);
         }
         
         .btn-outline {
-            background-color: transparent;
+            background: transparent;
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
+            box-shadow: none;
         }
         
         .btn-outline:hover {
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             color: white;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+            margin-bottom: 10px;
+            font-weight: 700;
             color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+        
+        .label-icon {
+            color: var(--primary-color);
+            margin-left: 8px;
         }
         
         input, textarea, select {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border 0.3s ease;
+            padding: 15px 20px;
+            border: 2px solid #FFEEDD;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: #FFF9F0;
         }
         
         input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+            box-shadow: 0 0 0 4px rgba(255, 154, 61, 0.2);
+            background: white;
+        }
+        
+        .url-input-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .url-input-container input {
+            flex: 1;
         }
         
         .editor-container {
             display: flex;
             flex-direction: column;
-            height: 500px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            height: 600px;
+            border: 2px solid #FFEEDD;
+            border-radius: 15px;
             overflow: hidden;
+            background: white;
         }
         
         .editor-tools {
             display: flex;
             flex-wrap: wrap;
-            background-color: #f8f9fa;
-            padding: 15px;
+            background: var(--gradient-light);
+            padding: 20px;
+            gap: 15px;
+            border-bottom: 2px solid #FFEEDD;
+        }
+        
+        .tool-group {
+            display: flex;
+            align-items: center;
             gap: 10px;
-            border-bottom: 1px solid #ddd;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .tool-group label {
+            margin: 0;
+            font-size: 1rem;
+            white-space: nowrap;
         }
         
         .editor-canvas {
             flex: 1;
-            background-color: #f0f0f0;
+            background: #f8f8f8;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: auto;
+            padding: 20px;
         }
         
         .canvas-container {
             position: relative;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            max-width: 90%;
+            max-height: 90%;
         }
         
         #imageCanvas, #videoPlayer {
             max-width: 100%;
-            max-height: 400px;
+            max-height: 100%;
+            display: block;
         }
         
         .hidden {
@@ -345,7 +616,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0,0,0,0.8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -353,7 +624,8 @@
             padding: 20px;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
         }
         
         .modal.active {
@@ -363,132 +635,224 @@
         
         .modal-content {
             background-color: white;
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 600px;
+            border-radius: 25px;
+            padding: 35px;
+            max-width: 700px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transform: translateY(30px) scale(0.9);
+            transition: transform 0.4s ease;
+            border: 2px solid var(--primary-color);
         }
         
         .modal.active .modal-content {
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
         
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #FFEEDD;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            border: none;
+            padding: 0;
         }
         
         .close-modal {
-            background: none;
+            background: var(--gradient-sun);
+            color: white;
             border: none;
-            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             cursor: pointer;
-            color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 154, 61, 0.3);
         }
         
         .close-modal:hover {
-            color: var(--dark-color);
+            transform: rotate(90deg) scale(1.1);
         }
         
         .person-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
         
         .person-thumbnail {
-            background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
-            border-radius: 12px;
-            padding: 20px;
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
             text-align: center;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow);
             border-top: 5px solid var(--primary-color);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
         
         .person-thumbnail:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-heavy);
+            border-top-color: var(--accent-color);
         }
         
         .person-thumbnail img {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--primary-color);
-            margin-bottom: 15px;
+            border: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(255, 154, 61, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .person-thumbnail:hover img {
+            border-color: var(--accent-color);
+            transform: scale(1.05);
         }
         
         .person-thumbnail h3 {
             color: var(--secondary-color);
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
         }
         
         .person-thumbnail p {
             color: #666;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .person-stats {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
             font-size: 0.9rem;
+        }
+        
+        .person-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #FFF5E8;
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: var(--primary-color);
+            font-weight: 600;
         }
         
         .empty-state {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             color: #888;
         }
         
         .empty-state i {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: #ddd;
+            font-size: 5rem;
+            margin-bottom: 25px;
+            background: var(--gradient-sun);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0.5;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
         }
         
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             color: #666;
-            font-size: 0.9rem;
-            margin-top: 40px;
-            border-top: 1px solid #eee;
+            font-size: 1rem;
+            margin-top: 50px;
+            border-top: 2px solid #FFEEDD;
+        }
+        
+        .footer-heart {
+            color: var(--danger-color);
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
         
         /* تصميم متجاوب للهواتف */
+        @media (max-width: 992px) {
+            .person-list {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 160px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
             }
             
+            header {
+                padding: 20px 15px;
+            }
+            
             header h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
             }
             
             .tab {
-                min-width: 100px;
-                padding: 12px 8px;
+                min-width: 120px;
+                padding: 15px 8px;
                 font-size: 0.9rem;
             }
             
             .content-area {
-                padding: 20px 15px;
-            }
-            
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
-            
-            .gallery-item {
-                height: 120px;
+                padding: 25px 20px;
             }
             
             .person-list {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 140px;
             }
             
             .editor-tools {
@@ -496,15 +860,19 @@
                 align-items: flex-start;
             }
             
+            .tool-group {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .upload-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
             .btn {
                 width: 100%;
                 margin-bottom: 10px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .person-card {
-                padding: 15px;
             }
             
             .person-header {
@@ -514,24 +882,166 @@
             
             .person-avatar {
                 margin-left: 0;
-                margin-bottom: 10px;
+                margin-bottom: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .person-list {
+                grid-template-columns: 1fr;
             }
             
             .gallery {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .person-list {
-                grid-template-columns: 1fr;
+            .tab {
+                min-width: 100px;
+            }
+            
+            .person-thumbnail {
+                padding: 20px;
+            }
+            
+            .modal-content {
+                padding: 25px 20px;
+            }
+            
+            .url-input-container {
+                flex-direction: column;
             }
         }
+        
+        @media (max-width: 400px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item {
+                height: 200px;
+            }
+        }
+        
+        /* تأثيرات خاصة */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 154, 61, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 154, 61, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 154, 61, 0); }
+        }
+        
+        .shake {
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            color: var(--dark-color);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1001;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            border-right: 5px solid var(--primary-color);
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .toast-success {
+            border-right-color: var(--success-color);
+        }
+        
+        .toast-error {
+            border-right-color: var(--danger-color);
+        }
+        
+        .toast-info {
+            border-right-color: var(--info-color);
+        }
+        
+        .album-frame {
+            padding: 10px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: inset 0 0 0 3px var(--primary-color), 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .album-frame:hover {
+            box-shadow: inset 0 0 0 5px var(--accent-color), 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .frame-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .frame-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .frame-option:hover {
+            transform: scale(1.1);
+            border-color: var(--primary-color);
+        }
+        
+        .frame-option.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 154, 61, 0.3);
+        }
+        
+        .frame-color-1 { background: linear-gradient(135deg, #FF9A3D, #FF6F3D); }
+        .frame-color-2 { background: linear-gradient(135deg, #4CAF50, #2E7D32); }
+        .frame-color-3 { background: linear-gradient(135deg, #2196F3, #0D47A1); }
+        .frame-color-4 { background: linear-gradient(135deg, #9C27B0, #6A1B9A); }
+        .frame-color-5 { background: linear-gradient(135deg, #FFC93D, #FF9800); }
+        .frame-color-6 { background: linear-gradient(135deg, #795548, #4E342E); }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1><i class="fas fa-camera-retro"></i> استوديو الذكريات الشخصية</h1>
-            <p class="subtitle">احفظ ذكرياتك مع أحبائك في مكان واحد مع إمكانية التعديل والمشاركة</p>
+        <div class="header-content">
+            <h1><i class="fas fa-sun"></i> استوديو ذكريات الشمس</h1>
+            <p class="subtitle">احفظ ذكرياتك مع أحبائك في ألبوم تفاعلي مع إمكانيات تعديل متقدمة</p>
+            
+            <div class="search-container">
+                <input type="text" class="search-box" id="searchInput" placeholder="ابحث عن شخص بالاسم...">
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
         </div>
     </header>
     
@@ -539,9 +1049,11 @@
         <div class="tabs">
             <div class="tab active" data-tab="home">
                 <i class="fas fa-home"></i> الرئيسية
+                <span class="tab-badge" id="homeBadge">0</span>
             </div>
             <div class="tab" data-tab="people">
                 <i class="fas fa-users"></i> الأشخاص
+                <span class="tab-badge" id="peopleBadge">0</span>
             </div>
             <div class="tab" data-tab="add-person">
                 <i class="fas fa-user-plus"></i> إضافة شخص
@@ -552,37 +1064,40 @@
             <div class="tab" data-tab="video-editor">
                 <i class="fas fa-video"></i> محرر الفيديو
             </div>
+            <div class="tab" data-tab="albums">
+                <i class="fas fa-images"></i> الألبومات
+            </div>
         </div>
         
         <!-- الصفحة الرئيسية -->
         <div id="home" class="content-area active">
-            <h2><i class="fas fa-heart"></i> أهلاً بك في استوديو الذكريات</h2>
+            <h2><i class="fas fa-heart"></i> أهلاً بك في استوديو ذكريات الشمس</h2>
             <p>هذا الموقع يمكّنك من حفظ وتنظيم ذكرياتك مع الأشخاص المهمين في حياتك. يمكنك إضافة أشخاص جدد، رفع صور وفيديوهات، وتعديلها باستخدام أدوات متقدمة.</p>
             
-            <div style="margin: 30px 0;">
+            <div style="margin: 40px 0;">
                 <h3><i class="fas fa-star"></i> الأشخاص المميزين</h3>
                 <div id="featuredPeople" class="person-list">
                     <!-- سيتم إضافة الأشخاص هنا عبر JavaScript -->
                 </div>
             </div>
             
-            <div style="background-color: #f0f7ff; padding: 20px; border-radius: 12px; margin-top: 30px;">
-                <h3><i class="fas fa-lightbulb"></i> كيف تستخدم الاستوديو؟</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 15px;">
-                    <div style="text-align: center;">
-                        <div style="background-color: var(--primary-color); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: bold;">1</div>
-                        <h4>أضف أشخاصاً</h4>
-                        <p>أنشئ ملفاً لكل شخص مع اسمه وصورته</p>
+            <div class="album-frame">
+                <h3><i class="fas fa-crown"></i> نصائح سريعة للاستخدام</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 20px;">
+                    <div style="text-align: center; padding: 20px; background: #FFF9F0; border-radius: 15px;">
+                        <div style="background: var(--gradient-sun); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 1.5rem; font-weight: bold;">1</div>
+                        <h4 style="color: var(--secondary-color); margin-bottom: 10px;">أضف أشخاصاً</h4>
+                        <p>أنشئ ملفاً لكل شخص مع اسمه وصورته وصوته</p>
                     </div>
-                    <div style="text-align: center;">
-                        <div style="background-color: var(--primary-color); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: bold;">2</div>
-                        <h4>ارفع الذكريات</h4>
-                        <p>أضف صوراً وفيديوهات لكل شخص</p>
+                    <div style="text-align: center; padding: 20px; background: #FFF9F0; border-radius: 15px;">
+                        <div style="background: var(--gradient-sun); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 1.5rem; font-weight: bold;">2</div>
+                        <h4 style="color: var(--secondary-color); margin-bottom: 10px;">ارفع الذكريات</h4>
+                        <p>أضف صوراً وفيديوهات من جهازك أو عبر الإنترنت</p>
                     </div>
-                    <div style="text-align: center;">
-                        <div style="background-color: var(--primary-color); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: bold;">3</div>
-                        <h4>عدّل المحتوى</h4>
-                        <p>استخدم أدوات التعديل لقص وتحسين الذكريات</p>
+                    <div style="text-align: center; padding: 20px; background: #FFF9F0; border-radius: 15px;">
+                        <div style="background: var(--gradient-sun); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 1.5rem; font-weight: bold;">3</div>
+                        <h4 style="color: var(--secondary-color); margin-bottom: 10px;">عدّل المحتوى</h4>
+                        <p>استخدم أدوات التعديل المتقدمة لقص وتحسين الذكريات</p>
                     </div>
                 </div>
             </div>
@@ -601,49 +1116,68 @@
             <h2><i class="fas fa-user-plus"></i> إضافة شخص جديد</h2>
             <form id="addPersonForm">
                 <div class="form-group">
-                    <label for="personName"><i class="fas fa-signature"></i> اسم الشخص</label>
+                    <label for="personName"><i class="fas fa-signature label-icon"></i> اسم الشخص</label>
                     <input type="text" id="personName" placeholder="مثال: محمد" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="personRelation"><i class="fas fa-handshake"></i> علاقتك به</label>
+                    <label for="personRelation"><i class="fas fa-handshake label-icon"></i> علاقتك به</label>
                     <select id="personRelation" required>
                         <option value="">اختر العلاقة</option>
                         <option value="عائلة">عائلة</option>
                         <option value="صديق">صديق</option>
                         <option value="زميل">زميل</option>
+                        <option value="حبيب">حبيب</option>
                         <option value="أخرى">أخرى</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="personDescription"><i class="fas fa-info-circle"></i> وصف مختصر</label>
-                    <textarea id="personDescription" rows="3" placeholder="أضف وصفاً مختصراً عن هذا الشخص..."></textarea>
+                    <label for="personDescription"><i class="fas fa-info-circle label-icon"></i> وصف مختصر</label>
+                    <textarea id="personDescription" rows="4" placeholder="أضف وصفاً مختصراً عن هذا الشخص..."></textarea>
                 </div>
                 
                 <div class="form-group">
-                    <label><i class="fas fa-image"></i> صورة الشخص</label>
+                    <label><i class="fas fa-image label-icon"></i> صورة الشخص</label>
                     <div class="upload-area" id="avatarUpload">
                         <i class="fas fa-cloud-upload-alt"></i>
                         <h3>اسحب وأفلت الصورة هنا أو انقر للاختيار</h3>
                         <p>الحجم الموصى به: 500x500 بكسل</p>
                         <input type="file" id="avatarInput" accept="image/*" style="display: none;">
                     </div>
-                    <div id="avatarPreview" style="text-align: center; margin-top: 15px;"></div>
+                    
+                    <div style="margin-top: 20px;">
+                        <p style="margin-bottom: 10px; font-weight: 600;">أو أدخل رابط صورة من الإنترنت:</p>
+                        <div class="url-input-container">
+                            <input type="url" id="avatarUrl" placeholder="https://example.com/image.jpg">
+                            <button type="button" class="btn btn-sm" id="loadAvatarUrl">تحميل</button>
+                        </div>
+                    </div>
+                    
+                    <div id="avatarPreview" style="text-align: center; margin-top: 20px;"></div>
                 </div>
                 
                 <div class="form-group">
-                    <label><i class="fas fa-file-audio"></i> صوت الشخص (اختياري)</label>
-                    <div class="upload-area" id="audioUpload" style="padding: 25px 20px;">
+                    <label><i class="fas fa-file-audio label-icon"></i> صوت الشخص (اختياري)</label>
+                    <div class="upload-area" id="audioUpload" style="padding: 35px 20px;">
                         <i class="fas fa-microphone"></i>
                         <h3>اسحب وأفلت ملف الصوت هنا أو انقر للاختيار</h3>
-                        <p>يمكنك رفع تسجيل لصوت هذا الشخص</p>
+                        <p>يمكنك رفع تسجيل لصوت هذا الشخص (MP3, WAV)</p>
                         <input type="file" id="audioInput" accept="audio/*" style="display: none;">
                     </div>
-                    <div id="audioPreview" style="text-align: center; margin-top: 15px;"></div>
+                    
+                    <div style="margin-top: 20px;">
+                        <p style="margin-bottom: 10px; font-weight: 600;">أو أدخل رابط صوت من الإنترنت:</p>
+                        <div class="url-input-container">
+                            <input type="url" id="audioUrl" placeholder="https://example.com/audio.mp3">
+                            <button type="button" class="btn btn-sm" id="loadAudioUrl">تحميل</button>
+                        </div>
+                    </div>
+                    
+                    <div id="audioPreview" style="text-align: center; margin-top: 20px;"></div>
                 </div>
                 
-                <div style="display: flex; justify-content: center; margin-top: 30px;">
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px; flex-wrap: wrap;">
                     <button type="submit" class="btn"><i class="fas fa-save"></i> حفظ الشخص</button>
                     <button type="reset" class="btn btn-outline"><i class="fas fa-redo"></i> إعادة تعيين</button>
                 </div>
@@ -652,69 +1186,132 @@
         
         <!-- صفحة محرر الصور -->
         <div id="editor" class="content-area">
-            <h2><i class="fas fa-edit"></i> محرر الصور</h2>
+            <h2><i class="fas fa-edit"></i> محرر الصور المتقدم</h2>
             
-            <div class="form-group">
-                <label><i class="fas fa-upload"></i> اختر صورة للتحرير</label>
-                <div class="upload-area" id="imageUploadEditor">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <h3>اسحب وأفلت الصورة هنا أو انقر للاختيار</h3>
-                    <p>يدعم الموقع الصور بصيغ JPG, PNG, GIF</p>
-                    <input type="file" id="imageInputEditor" accept="image/*" style="display: none;">
+            <div class="upload-options">
+                <div class="btn btn-info" id="loadFromGalleryBtn">
+                    <i class="fas fa-images"></i> اختر من المعرض
+                </div>
+                <div class="btn" id="uploadImageBtn">
+                    <i class="fas fa-upload"></i> رفع من الجهاز
+                </div>
+                <div class="btn btn-success" id="loadFromUrlBtn">
+                    <i class="fas fa-link"></i> تحميل من رابط
                 </div>
             </div>
             
             <div class="editor-container hidden" id="imageEditorContainer">
                 <div class="editor-tools">
-                    <button class="btn btn-outline" id="cropBtn"><i class="fas fa-crop"></i> قص</button>
-                    <button class="btn btn-outline" id="rotateBtn"><i class="fas fa-redo"></i> تدوير</button>
-                    <button class="btn btn-outline" id="flipHBtn"><i class="fas fa-arrows-alt-h"></i> قلب أفقي</button>
-                    <button class="btn btn-outline" id="flipVBtn"><i class="fas fa-arrows-alt-v"></i> قلب عمودي</button>
-                    <button class="btn btn-outline" id="brightnessBtn"><i class="fas fa-sun"></i> سطوع</button>
-                    <button class="btn btn-outline" id="contrastBtn"><i class="fas fa-adjust"></i> تباين</button>
-                    <button class="btn btn-outline" id="resetBtn"><i class="fas fa-undo"></i> إعادة تعيين</button>
+                    <div class="tool-group">
+                        <label><i class="fas fa-crop"></i> قص:</label>
+                        <button class="btn btn-sm" id="cropBtn">تفعيل</button>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <label><i class="fas fa-rotate-right"></i> تدوير:</label>
+                        <input type="range" id="rotateRange" min="0" max="360" value="0" style="width: 120px;">
+                        <span id="rotateValue">0°</span>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <label><i class="fas fa-sun"></i> سطوع:</label>
+                        <input type="range" id="brightnessRange" min="0" max="200" value="100" style="width: 120px;">
+                        <span id="brightnessValue">100%</span>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <label><i class="fas fa-adjust"></i> تباين:</label>
+                        <input type="range" id="contrastRange" min="0" max="200" value="100" style="width: 120px;">
+                        <span id="contrastValue">100%</span>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <label><i class="fas fa-tint"></i> تشبع:</label>
+                        <input type="range" id="saturationRange" min="0" max="200" value="100" style="width: 120px;">
+                        <span id="saturationValue">100%</span>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <label><i class="fas fa-droplet"></i> لون:</label>
+                        <input type="color" id="tintColor" value="#ff9a3d" style="width: 40px; height: 30px; padding: 0;">
+                        <input type="range" id="tintRange" min="0" max="100" value="0" style="width: 80px;">
+                        <span id="tintValue">0%</span>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <button class="btn btn-sm btn-danger" id="resetBtn"><i class="fas fa-undo"></i> إعادة تعيين</button>
+                        <button class="btn btn-sm btn-success" id="applyFiltersBtn"><i class="fas fa-check"></i> تطبيق</button>
+                    </div>
                 </div>
                 
                 <div class="editor-canvas">
-                    <div class="canvas-container">
+                    <div class="canvas-container" id="canvasWrapper">
                         <canvas id="imageCanvas"></canvas>
                     </div>
                 </div>
                 
-                <div style="padding: 15px; background-color: #f8f9fa; border-top: 1px solid #ddd; display: flex; justify-content: center;">
+                <div style="padding: 20px; background: var(--gradient-light); border-top: 2px solid #FFEEDD; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
                     <button class="btn" id="saveImageBtn"><i class="fas fa-download"></i> حفظ الصورة</button>
-                    <button class="btn btn-accent" id="applyToPersonBtn"><i class="fas fa-user-check"></i> تطبيق على شخص</button>
+                    <button class="btn btn-accent" id="addToPersonBtn"><i class="fas fa-user-plus"></i> إضافة لشخص</button>
+                    <button class="btn btn-success" id="saveToAlbumBtn"><i class="fas fa-images"></i> حفظ للألبوم</button>
                 </div>
             </div>
             
             <div id="editorInstructions" class="empty-state">
                 <i class="fas fa-edit"></i>
                 <h3>ابدأ بتحرير صورة</h3>
-                <p>اختر صورة من جهازك أو من معرض الأشخاص لبدء التحرير</p>
+                <p>اختر صورة من المعرض أو ارفع صورة من جهازك أو أدخل رابط صورة من الإنترنت</p>
             </div>
         </div>
         
         <!-- صفحة محرر الفيديو -->
         <div id="video-editor" class="content-area">
-            <h2><i class="fas fa-video"></i> محرر الفيديو</h2>
+            <h2><i class="fas fa-video"></i> محرر الفيديو المتقدم</h2>
             
-            <div class="form-group">
-                <label><i class="fas fa-upload"></i> اختر فيديو للتحرير</label>
-                <div class="upload-area" id="videoUploadEditor">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <h3>اسحب وأفلت الفيديو هنا أو انقر للاختيار</h3>
-                    <p>يدعم الموقع الفيديوهات بصيغ MP4, WebM, OGG</p>
-                    <input type="file" id="videoInputEditor" accept="video/*" style="display: none;">
+            <div class="upload-options">
+                <div class="btn btn-info" id="loadVideoFromGalleryBtn">
+                    <i class="fas fa-video"></i> اختر من المعرض
+                </div>
+                <div class="btn" id="uploadVideoBtn">
+                    <i class="fas fa-upload"></i> رفع من الجهاز
+                </div>
+                <div class="btn btn-success" id="loadVideoFromUrlBtn">
+                    <i class="fas fa-link"></i> تحميل من رابط
                 </div>
             </div>
             
             <div class="editor-container hidden" id="videoEditorContainer">
                 <div class="editor-tools">
-                    <button class="btn btn-outline" id="trimStartBtn"><i class="fas fa-cut"></i> تحديد البداية</button>
-                    <button class="btn btn-outline" id="trimEndBtn"><i class="fas fa-cut"></i> تحديد النهاية</button>
-                    <button class="btn btn-outline" id="applyTrimBtn"><i class="fas fa-check"></i> تطبيق القص</button>
-                    <input type="range" id="videoTrimRange" min="0" max="100" value="0" style="flex: 1; max-width: 300px;">
-                    <button class="btn btn-outline" id="resetVideoBtn"><i class="fas fa-undo"></i> إعادة تعيين</button>
+                    <div class="tool-group">
+                        <label><i class="fas fa-cut"></i> قص الفيديو:</label>
+                        <input type="range" id="videoTrimStart" min="0" max="100" value="0" style="width: 100px;">
+                        <span id="trimStartValue">0%</span>
+                        <span>إلى</span>
+                        <input type="range" id="videoTrimEnd" min="0" max="100" value="100" style="width: 100px;">
+                        <span id="trimEndValue">100%</span>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <label><i class="fas fa-volume-up"></i> الصوت:</label>
+                        <input type="range" id="videoVolume" min="0" max="100" value="100" style="width: 100px;">
+                        <span id="volumeValue">100%</span>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <label><i class="fas fa-tachometer-alt"></i> السرعة:</label>
+                        <select id="videoSpeed">
+                            <option value="0.5">0.5x (بطيء)</option>
+                            <option value="0.75">0.75x</option>
+                            <option value="1" selected>1x (عادي)</option>
+                            <option value="1.5">1.5x</option>
+                            <option value="2">2x (سريع)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <button class="btn btn-sm btn-danger" id="resetVideoBtn"><i class="fas fa-undo"></i> إعادة تعيين</button>
+                        <button class="btn btn-sm btn-success" id="applyVideoEditBtn"><i class="fas fa-check"></i> تطبيق التعديلات</button>
+                    </div>
                 </div>
                 
                 <div class="editor-canvas">
@@ -723,15 +1320,58 @@
                     </video>
                 </div>
                 
-                <div style="padding: 15px; background-color: #f8f9fa; border-top: 1px solid #ddd; display: flex; justify-content: center;">
+                <div style="padding: 20px; background: var(--gradient-light); border-top: 2px solid #FFEEDD; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
                     <button class="btn" id="saveVideoBtn"><i class="fas fa-download"></i> حفظ الفيديو</button>
+                    <button class="btn btn-accent" id="addVideoToPersonBtn"><i class="fas fa-user-plus"></i> إضافة لشخص</button>
                 </div>
             </div>
             
             <div id="videoInstructions" class="empty-state">
                 <i class="fas fa-video"></i>
                 <h3>ابدأ بتحرير فيديو</h3>
-                <p>اختر فيديو من جهازك أو من معرض الأشخاص لبدء التحرير</p>
+                <p>اختر فيديو من المعرض أو ارفع فيديو من جهازك أو أدخل رابط فيديو من الإنترنت</p>
+            </div>
+        </div>
+        
+        <!-- صفحة الألبومات -->
+        <div id="albums" class="content-area">
+            <h2><i class="fas fa-images"></i> ألبومات الصور والفيديو</h2>
+            
+            <div class="album-frame" id="mainAlbumFrame">
+                <div class="album-header">
+                    <div class="album-title">
+                        <i class="fas fa-heart"></i>
+                        <h3>الألبوم الرئيسي</h3>
+                    </div>
+                    <div>
+                        <button class="btn btn-danger btn-sm" id="clearAlbumBtn">
+                            <i class="fas fa-trash"></i> مسح الألبوم
+                        </button>
+                        <button class="btn btn-sm" id="addToAlbumBtn">
+                            <i class="fas fa-plus"></i> إضافة محتوى
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="frame-controls">
+                    <p style="margin-bottom: 10px; font-weight: 600;">اختر لون إطار الألبوم:</p>
+                    <div class="frame-option frame-color-1 active" data-color="1"></div>
+                    <div class="frame-option frame-color-2" data-color="2"></div>
+                    <div class="frame-option frame-color-3" data-color="3"></div>
+                    <div class="frame-option frame-color-4" data-color="4"></div>
+                    <div class="frame-option frame-color-5" data-color="5"></div>
+                    <div class="frame-option frame-color-6" data-color="6"></div>
+                </div>
+                
+                <div id="albumContent" class="gallery">
+                    <!-- محتوى الألبوم سيعرض هنا -->
+                </div>
+                
+                <div id="emptyAlbum" class="empty-state" style="padding: 40px 20px;">
+                    <i class="fas fa-images"></i>
+                    <h3>الألبوم فارغ</h3>
+                    <p>أضف صوراً أو فيديوهات إلى الألبوم لتبدأ</p>
+                </div>
             </div>
         </div>
     </div>
@@ -749,10 +1389,73 @@
         </div>
     </div>
     
+    <!-- نافذة اختيار الصور من المعرض -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-images"></i> اختر من المعرض</h2>
+                <button class="close-modal" id="closeGalleryModal">&times;</button>
+            </div>
+            <div id="galleryContent">
+                <!-- سيتم تعبئة المعرض هنا -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- نافذة إضافة محتوى للألبوم -->
+    <div id="addToAlbumModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus"></i> إضافة محتوى للألبوم</h2>
+                <button class="close-modal" id="closeAddToAlbumModal">&times;</button>
+            </div>
+            <div style="padding: 20px 0;">
+                <div class="upload-options" style="justify-content: center;">
+                    <div class="btn btn-info" id="addImageToAlbumBtn">
+                        <i class="fas fa-image"></i> إضافة صورة
+                    </div>
+                    <div class="btn btn-success" id="addVideoToAlbumBtn">
+                        <i class="fas fa-video"></i> إضافة فيديو
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">أو اختر من المعرض:</h3>
+                    <div id="albumGallerySelection" class="gallery">
+                        <!-- سيتم تعبئة المعرض هنا -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- نافذة تحميل من رابط -->
+    <div id="urlModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-link"></i> تحميل من رابط</h2>
+                <button class="close-modal" id="closeUrlModal">&times;</button>
+            </div>
+            <div style="padding: 20px 0;">
+                <div class="form-group">
+                    <label for="mediaUrl"><i class="fas fa-link label-icon"></i> أدخل رابط الصورة أو الفيديو</label>
+                    <input type="url" id="mediaUrl" placeholder="https://example.com/image.jpg أو https://example.com/video.mp4">
+                </div>
+                <div style="display: flex; justify-content: center; gap: 15px; margin-top: 30px;">
+                    <button class="btn" id="loadMediaUrlBtn"><i class="fas fa-download"></i> تحميل</button>
+                    <button class="btn btn-outline" id="cancelUrlBtn"><i class="fas fa-times"></i> إلغاء</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- عناصر Toast للإشعارات -->
+    <div id="toastContainer"></div>
+    
     <footer>
         <div class="container">
-            <p>استوديو الذكريات الشخصية &copy; <span id="currentYear"></span> - جميع الحقوق محفوظة</p>
-            <p style="margin-top: 10px; font-size: 0.8rem;">صمم بحب لحفظ الذكريات مع الأحباب</p>
+            <p>استوديو ذكريات الشمس <i class="fas fa-sun"></i> &copy; <span id="currentYear"></span> - جميع الحقوق محفوظة</p>
+            <p style="margin-top: 15px; font-size: 0.9rem;">صمم <i class="fas fa-heart footer-heart"></i> لحفظ الذكريات مع الأحباب</p>
         </div>
     </footer>
 
@@ -764,11 +1467,11 @@
                 name: "محمد",
                 relation: "عائلة",
                 description: "الأخ الأكبر، يحب السفر والتصوير",
-                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
                 audio: null,
                 images: [
-                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-                    "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
                 ],
                 videos: []
             },
@@ -777,14 +1480,18 @@
                 name: "سارة",
                 relation: "صديق",
                 description: "صديقة الطفولة، تحب الرسم والقراءة",
-                avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
                 audio: null,
                 images: [
-                    "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w-400&q=80"
+                    "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
                 ],
                 videos: []
             }
         ];
+        
+        // بيانات الألبوم
+        let album = JSON.parse(localStorage.getItem('memoryStudioAlbum')) || [];
         
         // متغيرات عامة
         let currentPersonId = null;
@@ -793,11 +1500,15 @@
         let canvas = document.getElementById('imageCanvas');
         let ctx = canvas.getContext('2d');
         let image = new Image();
+        let currentMediaType = null; // 'image' أو 'video'
         
         // تهيئة التطبيق
         document.addEventListener('DOMContentLoaded', function() {
             // تعيين سنة الحالية في الفوتر
             document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // تحديث العداد في التبويبات
+            updateTabBadges();
             
             // تهيئة نظام التبويب
             initTabs();
@@ -817,12 +1528,27 @@
             // إعداد محرر الفيديو
             setupVideoEditor();
             
-            // إعداد النافذة المنبثقة
-            setupModal();
+            // إعداد صفحة الألبومات
+            setupAlbumsPage();
+            
+            // إعداد النوافذ المنبثقة
+            setupModals();
+            
+            // إعداد البحث
+            setupSearch();
             
             // إعداد رفع الملفات
             setupFileUploads();
+            
+            // إعداد الإشعارات
+            setupToast();
         });
+        
+        // وظيفة تحديث العداد في التبويبات
+        function updateTabBadges() {
+            document.getElementById('homeBadge').textContent = people.length;
+            document.getElementById('peopleBadge').textContent = people.length;
+        }
         
         // وظيفة تهيئة نظام التبويب
         function initTabs() {
@@ -840,6 +1566,11 @@
                     // إضافة النشاط للتبويب المحدد
                     this.classList.add('active');
                     document.getElementById(tabId).classList.add('active');
+                    
+                    // إذا كانت صفحة الألبومات، قم بتحميل محتوى الألبوم
+                    if (tabId === 'albums') {
+                        renderAlbumContent();
+                    }
                 });
             });
         }
@@ -869,7 +1600,16 @@
                         <img src="${person.avatar}" alt="${person.name}">
                         <h3>${person.name}</h3>
                         <p>${person.relation}</p>
-                        <p style="font-size: 0.8rem; margin-top: 5px;">${person.images.length} صورة</p>
+                        <div class="person-stats">
+                            <div class="person-stat">
+                                <i class="fas fa-image"></i>
+                                <span>${person.images.length}</span>
+                            </div>
+                            <div class="person-stat">
+                                <i class="fas fa-video"></i>
+                                <span>${person.videos.length}</span>
+                            </div>
+                        </div>
                     </div>
                 `;
             });
@@ -908,7 +1648,16 @@
                         <img src="${person.avatar}" alt="${person.name}">
                         <h3>${person.name}</h3>
                         <p>${person.relation}</p>
-                        <p style="font-size: 0.8rem; margin-top: 5px;">${person.images.length} صورة، ${person.videos.length} فيديو</p>
+                        <div class="person-stats">
+                            <div class="person-stat">
+                                <i class="fas fa-image"></i>
+                                <span>${person.images.length}</span>
+                            </div>
+                            <div class="person-stat">
+                                <i class="fas fa-video"></i>
+                                <span>${person.videos.length}</span>
+                            </div>
+                        </div>
                     </div>
                 `;
             });
@@ -929,12 +1678,16 @@
             const form = document.getElementById('addPersonForm');
             const avatarUpload = document.getElementById('avatarUpload');
             const avatarInput = document.getElementById('avatarInput');
+            const loadAvatarUrlBtn = document.getElementById('loadAvatarUrl');
             const audioUpload = document.getElementById('audioUpload');
             const audioInput = document.getElementById('audioInput');
+            const loadAudioUrlBtn = document.getElementById('loadAudioUrl');
             let avatarFile = null;
             let audioFile = null;
+            let avatarUrl = null;
+            let audioUrl = null;
             
-            // رفع صورة الشخص
+            // رفع صورة الشخص من الجهاز
             avatarUpload.addEventListener('click', () => avatarInput.click());
             avatarInput.addEventListener('change', function(e) {
                 if (this.files && this.files[0]) {
@@ -942,9 +1695,12 @@
                     const reader = new FileReader();
                     
                     reader.onload = function(e) {
+                        avatarUrl = e.target.result;
                         document.getElementById('avatarPreview').innerHTML = `
-                            <img src="${e.target.result}" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-color);">
-                            <p style="margin-top: 10px;">تم اختيار صورة الشخص</p>
+                            <div style="background: #FFF9F0; padding: 20px; border-radius: 15px; display: inline-block;">
+                                <img src="${avatarUrl}" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary-color);">
+                                <p style="margin-top: 15px; font-weight: 600; color: var(--primary-color);">تم اختيار صورة الشخص</p>
+                            </div>
                         `;
                     };
                     
@@ -952,22 +1708,61 @@
                 }
             });
             
-            // رفع صوت الشخص
+            // تحميل صورة الشخص من رابط
+            loadAvatarUrlBtn.addEventListener('click', function() {
+                const url = document.getElementById('avatarUrl').value;
+                if (url) {
+                    avatarUrl = url;
+                    document.getElementById('avatarPreview').innerHTML = `
+                        <div style="background: #FFF9F0; padding: 20px; border-radius: 15px; display: inline-block;">
+                            <img src="${avatarUrl}" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary-color);" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80';">
+                            <p style="margin-top: 15px; font-weight: 600; color: var(--primary-color);">تم تحميل الصورة من الرابط</p>
+                        </div>
+                    `;
+                    showToast('تم تحميل الصورة من الرابط بنجاح', 'success');
+                } else {
+                    showToast('الرجاء إدخال رابط صحيح', 'error');
+                }
+            });
+            
+            // رفع صوت الشخص من الجهاز
             audioUpload.addEventListener('click', () => audioInput.click());
             audioInput.addEventListener('change', function(e) {
                 if (this.files && this.files[0]) {
                     audioFile = this.files[0];
+                    audioUrl = URL.createObjectURL(audioFile);
                     
                     document.getElementById('audioPreview').innerHTML = `
-                        <div style="background-color: #f0f7ff; padding: 15px; border-radius: 10px; display: inline-block;">
-                            <i class="fas fa-volume-up" style="color: var(--primary-color); font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
-                            <p>${audioFile.name}</p>
-                            <audio controls style="margin-top: 10px; width: 250px;">
-                                <source src="${URL.createObjectURL(audioFile)}" type="${audioFile.type}">
+                        <div style="background: #FFF9F0; padding: 20px; border-radius: 15px; display: inline-block;">
+                            <i class="fas fa-volume-up" style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                            <p style="font-weight: 600; margin-bottom: 10px;">${audioFile.name}</p>
+                            <audio controls style="width: 300px;">
+                                <source src="${audioUrl}" type="${audioFile.type}">
                                 متصفحك لا يدعم تشغيل الصوت
                             </audio>
                         </div>
                     `;
+                }
+            });
+            
+            // تحميل صوت الشخص من رابط
+            loadAudioUrlBtn.addEventListener('click', function() {
+                const url = document.getElementById('audioUrl').value;
+                if (url) {
+                    audioUrl = url;
+                    document.getElementById('audioPreview').innerHTML = `
+                        <div style="background: #FFF9F0; padding: 20px; border-radius: 15px; display: inline-block;">
+                            <i class="fas fa-volume-up" style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                            <p style="font-weight: 600; margin-bottom: 10px;">صوت من الرابط</p>
+                            <audio controls style="width: 300px;">
+                                <source src="${audioUrl}" type="audio/mpeg">
+                                متصفحك لا يدعم تشغيل الصوت
+                            </audio>
+                        </div>
+                    `;
+                    showToast('تم تحميل الصوت من الرابط بنجاح', 'success');
+                } else {
+                    showToast('الرجاء إدخال رابط صحيح', 'error');
                 }
             });
             
@@ -983,12 +1778,7 @@
                 const newId = people.length > 0 ? Math.max(...people.map(p => p.id)) + 1 : 1;
                 
                 // صورة افتراضية إذا لم يتم رفع صورة
-                let avatarUrl = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80";
-                
-                // إذا تم رفع صورة، نستخدمها
-                if (avatarFile) {
-                    avatarUrl = URL.createObjectURL(avatarFile);
-                }
+                let finalAvatarUrl = avatarUrl || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80";
                 
                 // إنشاء كائن الشخص الجديد
                 const newPerson = {
@@ -996,9 +1786,9 @@
                     name: name,
                     relation: relation,
                     description: description,
-                    avatar: avatarUrl,
-                    audio: audioFile ? URL.createObjectURL(audioFile) : null,
-                    images: [avatarUrl], // نضيف الصورة الأساسية للمعرض
+                    avatar: finalAvatarUrl,
+                    audio: audioUrl,
+                    images: [finalAvatarUrl],
                     videos: []
                 };
                 
@@ -1014,13 +1804,16 @@
                 document.getElementById('audioPreview').innerHTML = '';
                 avatarFile = null;
                 audioFile = null;
+                avatarUrl = null;
+                audioUrl = null;
                 
                 // تحديث العروض
                 renderFeaturedPeople();
                 renderAllPeople();
+                updateTabBadges();
                 
                 // عرض رسالة نجاح
-                alert(`تمت إضافة ${name} بنجاح إلى استوديو الذكريات!`);
+                showToast(`تمت إضافة ${name} بنجاح إلى استوديو الذكريات!`, 'success');
                 
                 // الانتقال إلى تبويب الأشخاص
                 document.querySelector('.tab[data-tab="people"]').click();
@@ -1029,138 +1822,197 @@
         
         // وظيفة إعداد محرر الصور
         function setupImageEditor() {
-            const imageUpload = document.getElementById('imageUploadEditor');
-            const imageInput = document.getElementById('imageInputEditor');
-            const editorContainer = document.getElementById('imageEditorContainer');
-            const instructions = document.getElementById('editorInstructions');
+            const loadFromGalleryBtn = document.getElementById('loadFromGalleryBtn');
+            const uploadImageBtn = document.getElementById('uploadImageBtn');
+            const loadFromUrlBtn = document.getElementById('loadFromUrlBtn');
+            const imageInput = document.createElement('input');
+            imageInput.type = 'file';
+            imageInput.accept = 'image/*';
+            imageInput.style.display = 'none';
+            document.body.appendChild(imageInput);
             
-            // رفع صورة للتحرير
-            imageUpload.addEventListener('click', () => imageInput.click());
+            // تحميل الصورة من المعرض
+            loadFromGalleryBtn.addEventListener('click', function() {
+                openGalleryModal('image');
+            });
+            
+            // رفع صورة من الجهاز
+            uploadImageBtn.addEventListener('click', function() {
+                imageInput.click();
+            });
+            
             imageInput.addEventListener('change', function(e) {
                 if (this.files && this.files[0]) {
                     const file = this.files[0];
                     const reader = new FileReader();
                     
                     reader.onload = function(e) {
-                        currentImage = new Image();
-                        currentImage.onload = function() {
-                            // عرض المحرر وإخفاء التعليمات
-                            editorContainer.classList.remove('hidden');
-                            instructions.classList.add('hidden');
-                            
-                            // ضبط حجم الكانفاس وعرض الصورة
-                            canvas.width = Math.min(800, currentImage.width);
-                            canvas.height = Math.min(500, currentImage.height);
-                            
-                            // رسم الصورة على الكانفاس
-                            ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
-                        };
-                        currentImage.src = e.target.result;
+                        loadImageForEditing(e.target.result);
                     };
                     
                     reader.readAsDataURL(file);
                 }
             });
             
-            // إعداد أزرار التحكم
-            document.getElementById('cropBtn').addEventListener('click', function() {
-                alert('ميزة القص: اسحب على الصورة لتحديد المنطقة التي تريد قصها');
-                // في التطبيق الكامل، هنا نضيف مكتبة لقص الصور
+            // تحميل صورة من رابط
+            loadFromUrlBtn.addEventListener('click', function() {
+                openUrlModal('image');
             });
             
-            document.getElementById('rotateBtn').addEventListener('click', function() {
-                if (!currentImage) return;
+            // إعداد أدوات تحرير الصور
+            setupImageEditorTools();
+        }
+        
+        // تحميل صورة للتحرير
+        function loadImageForEditing(imageSrc) {
+            currentImage = new Image();
+            currentImage.onload = function() {
+                // عرض المحرر وإخفاء التعليمات
+                document.getElementById('imageEditorContainer').classList.remove('hidden');
+                document.getElementById('editorInstructions').classList.add('hidden');
                 
-                // حفظ حالة الكانفاس
-                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                // ضبط حجم الكانفاس وعرض الصورة
+                const maxWidth = 800;
+                const maxHeight = 500;
+                let width = currentImage.width;
+                let height = currentImage.height;
                 
-                // تدوير الكانفاس
-                canvas.width = canvas.height;
-                canvas.height = imageData.width;
-                
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.translate(canvas.width / 2, canvas.height / 2);
-                ctx.rotate(Math.PI / 2);
-                ctx.drawImage(currentImage, -currentImage.height / 2, -currentImage.width / 2);
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
-                
-                // تحديث الصورة الحالية
-                const tempCanvas = document.createElement('canvas');
-                const tempCtx = tempCanvas.getContext('2d');
-                tempCanvas.width = canvas.width;
-                tempCanvas.height = canvas.height;
-                tempCtx.drawImage(canvas, 0, 0);
-                
-                currentImage = new Image();
-                currentImage.src = tempCanvas.toDataURL();
-            });
-            
-            document.getElementById('flipHBtn').addEventListener('click', function() {
-                if (!currentImage) return;
-                
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.translate(canvas.width, 0);
-                ctx.scale(-1, 1);
-                ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
-                
-                // تحديث الصورة الحالية
-                const tempCanvas = document.createElement('canvas');
-                const tempCtx = tempCanvas.getContext('2d');
-                tempCanvas.width = canvas.width;
-                tempCanvas.height = canvas.height;
-                tempCtx.drawImage(canvas, 0, 0);
-                
-                currentImage = new Image();
-                currentImage.src = tempCanvas.toDataURL();
-            });
-            
-            document.getElementById('flipVBtn').addEventListener('click', function() {
-                if (!currentImage) return;
-                
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.translate(0, canvas.height);
-                ctx.scale(1, -1);
-                ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
-                
-                // تحديث الصورة الحالية
-                const tempCanvas = document.createElement('canvas');
-                const tempCtx = tempCanvas.getContext('2d');
-                tempCanvas.width = canvas.width;
-                tempCanvas.height = canvas.height;
-                tempCtx.drawImage(canvas, 0, 0);
-                
-                currentImage = new Image();
-                currentImage.src = tempCanvas.toDataURL();
-            });
-            
-            document.getElementById('brightnessBtn').addEventListener('click', function() {
-                if (!currentImage) return;
-                
-                const brightness = prompt('أدخل قيمة السطوع (من -100 إلى 100):', '10');
-                if (brightness !== null) {
-                    applyFilter('brightness', parseInt(brightness));
+                if (width > maxWidth) {
+                    height = height * (maxWidth / width);
+                    width = maxWidth;
                 }
-            });
-            
-            document.getElementById('contrastBtn').addEventListener('click', function() {
-                if (!currentImage) return;
                 
-                const contrast = prompt('أدخل قيمة التباين (من -100 إلى 100):', '10');
-                if (contrast !== null) {
-                    applyFilter('contrast', parseInt(contrast));
+                if (height > maxHeight) {
+                    width = width * (maxHeight / height);
+                    height = maxHeight;
                 }
+                
+                canvas.width = width;
+                canvas.height = height;
+                
+                // رسم الصورة على الكانفاس
+                ctx.drawImage(currentImage, 0, 0, width, height);
+                
+                // إعادة تعيين القيم
+                document.getElementById('rotateRange').value = 0;
+                document.getElementById('rotateValue').textContent = '0°';
+                document.getElementById('brightnessRange').value = 100;
+                document.getElementById('brightnessValue').textContent = '100%';
+                document.getElementById('contrastRange').value = 100;
+                document.getElementById('contrastValue').textContent = '100%';
+                document.getElementById('saturationRange').value = 100;
+                document.getElementById('saturationValue').textContent = '100%';
+                document.getElementById('tintRange').value = 0;
+                document.getElementById('tintValue').textContent = '0%';
+                
+                showToast('تم تحميل الصورة للتحرير بنجاح', 'success');
+            };
+            currentImage.src = imageSrc;
+            currentMediaType = 'image';
+        }
+        
+        // إعداد أدوات تحرير الصور
+        function setupImageEditorTools() {
+            // تدوير الصورة
+            const rotateRange = document.getElementById('rotateRange');
+            const rotateValue = document.getElementById('rotateValue');
+            
+            rotateRange.addEventListener('input', function() {
+                rotateValue.textContent = this.value + '°';
+                applyImageFilters();
             });
             
+            // سطوع الصورة
+            const brightnessRange = document.getElementById('brightnessRange');
+            const brightnessValue = document.getElementById('brightnessValue');
+            
+            brightnessRange.addEventListener('input', function() {
+                brightnessValue.textContent = this.value + '%';
+                applyImageFilters();
+            });
+            
+            // تباين الصورة
+            const contrastRange = document.getElementById('contrastRange');
+            const contrastValue = document.getElementById('contrastValue');
+            
+            contrastRange.addEventListener('input', function() {
+                contrastValue.textContent = this.value + '%';
+                applyImageFilters();
+            });
+            
+            // تشبع الصورة
+            const saturationRange = document.getElementById('saturationRange');
+            const saturationValue = document.getElementById('saturationValue');
+            
+            saturationRange.addEventListener('input', function() {
+                saturationValue.textContent = this.value + '%';
+                applyImageFilters();
+            });
+            
+            // تلوين الصورة
+            const tintRange = document.getElementById('tintRange');
+            const tintValue = document.getElementById('tintValue');
+            const tintColor = document.getElementById('tintColor');
+            
+            tintRange.addEventListener('input', function() {
+                tintValue.textContent = this.value + '%';
+                applyImageFilters();
+            });
+            
+            tintColor.addEventListener('input', function() {
+                applyImageFilters();
+            });
+            
+            // زر إعادة التعيين
             document.getElementById('resetBtn').addEventListener('click', function() {
                 if (!currentImage) return;
                 
-                canvas.width = Math.min(800, currentImage.width);
-                canvas.height = Math.min(500, currentImage.height);
-                ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
+                rotateRange.value = 0;
+                rotateValue.textContent = '0°';
+                brightnessRange.value = 100;
+                brightnessValue.textContent = '100%';
+                contrastRange.value = 100;
+                contrastValue.textContent = '100%';
+                saturationRange.value = 100;
+                saturationValue.textContent = '100%';
+                tintRange.value = 0;
+                tintValue.textContent = '0%';
+                tintColor.value = '#ff9a3d';
+                
+                applyImageFilters();
+                showToast('تمت إعادة تعيين التعديلات', 'info');
             });
             
+            // زر تطبيق الفلاتر
+            document.getElementById('applyFiltersBtn').addEventListener('click', function() {
+                if (!currentImage) return;
+                
+                // حفظ الصورة المعدلة كصورة جديدة
+                const tempCanvas = document.createElement('canvas');
+                const tempCtx = tempCanvas.getContext('2d');
+                tempCanvas.width = canvas.width;
+                tempCanvas.height = canvas.height;
+                tempCtx.drawImage(canvas, 0, 0);
+                
+                currentImage = new Image();
+                currentImage.src = tempCanvas.toDataURL('image/png');
+                
+                // إعادة تعيين القيم
+                rotateRange.value = 0;
+                rotateValue.textContent = '0°';
+                brightnessRange.value = 100;
+                brightnessValue.textContent = '100%';
+                contrastRange.value = 100;
+                contrastValue.textContent = '100%';
+                saturationRange.value = 100;
+                saturationValue.textContent = '100%';
+                tintRange.value = 0;
+                tintValue.textContent = '0%';
+                
+                showToast('تم تطبيق الفلاتر على الصورة', 'success');
+            });
+            
+            // زر حفظ الصورة
             document.getElementById('saveImageBtn').addEventListener('click', function() {
                 if (!currentImage) return;
                 
@@ -1168,18 +2020,21 @@
                 link.download = 'صورة-معدلة-' + Date.now() + '.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
+                
+                showToast('تم حفظ الصورة بنجاح', 'success');
             });
             
-            document.getElementById('applyToPersonBtn').addEventListener('click', function() {
+            // زر إضافة الصورة لشخص
+            document.getElementById('addToPersonBtn').addEventListener('click', function() {
                 if (!currentImage) return;
                 
-                // عرض قائمة بالأشخاص لتطبيق الصورة عليهم
-                let optionsHTML = '';
+                // إنشاء قائمة بالأشخاص
+                let optionsHTML = '<option value="">اختر شخصاً</option>';
                 people.forEach(person => {
                     optionsHTML += `<option value="${person.id}">${person.name}</option>`;
                 });
                 
-                const personId = prompt(`أدخل معرف الشخص لتطبيق الصورة عليه:\n${people.map(p => `${p.id}: ${p.name}`).join('\n')}`);
+                const personId = prompt(`أدخل معرف الشخص لإضافة الصورة إليه:\n${people.map(p => `${p.id}: ${p.name}`).join('\n')}`);
                 
                 if (personId) {
                     const person = people.find(p => p.id === parseInt(personId));
@@ -1191,157 +2046,479 @@
                         // حفظ التغييرات
                         localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
                         
-                        alert(`تمت إضافة الصورة إلى معرض ${person.name} بنجاح!`);
+                        showToast(`تمت إضافة الصورة إلى معرض ${person.name} بنجاح!`, 'success');
                     } else {
-                        alert('لم يتم العثور على الشخص المحدد');
+                        showToast('لم يتم العثور على الشخص المحدد', 'error');
+                    }
+                }
+            });
+            
+            // زر حفظ الصورة للألبوم
+            document.getElementById('saveToAlbumBtn').addEventListener('click', function() {
+                if (!currentImage) return;
+                
+                // إضافة الصورة للألبوم
+                const imageUrl = canvas.toDataURL('image/png');
+                addToAlbum({
+                    type: 'image',
+                    src: imageUrl,
+                    date: new Date().toLocaleDateString('ar-SA')
+                });
+                
+                showToast('تمت إضافة الصورة إلى الألبوم بنجاح!', 'success');
+            });
+        }
+        
+        // تطبيق الفلاتر على الصورة
+        function applyImageFilters() {
+            if (!currentImage) return;
+            
+            // الحصول على القيم من عناصر التحكم
+            const rotate = parseInt(document.getElementById('rotateRange').value);
+            const brightness = parseInt(document.getElementById('brightnessRange').value) / 100;
+            const contrast = parseInt(document.getElementById('contrastRange').value) / 100;
+            const saturation = parseInt(document.getElementById('saturationRange').value) / 100;
+            const tintAmount = parseInt(document.getElementById('tintRange').value) / 100;
+            const tintColor = document.getElementById('tintColor').value;
+            
+            // رسم الصورة الأصلية
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // تطبيق التدوير
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(rotate * Math.PI / 180);
+            ctx.drawImage(currentImage, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+            ctx.restore();
+            
+            // تطبيق الفلاتر الأخرى
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            
+            // تحويل لون التلوين إلى RGB
+            const tintR = parseInt(tintColor.substr(1, 2), 16);
+            const tintG = parseInt(tintColor.substr(3, 2), 16);
+            const tintB = parseInt(tintColor.substr(5, 2), 16);
+            
+            for (let i = 0; i < data.length; i += 4) {
+                // تطبيق السطوع
+                data[i] *= brightness;     // الأحمر
+                data[i + 1] *= brightness; // الأخضر
+                data[i + 2] *= brightness; // الأزرق
+                
+                // تطبيق التباين
+                data[i] = (data[i] - 128) * contrast + 128;
+                data[i + 1] = (data[i + 1] - 128) * contrast + 128;
+                data[i + 2] = (data[i + 2] - 128) * contrast + 128;
+                
+                // تطبيق التشبع (تبسيط)
+                const gray = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+                data[i] = gray + (data[i] - gray) * saturation;
+                data[i + 1] = gray + (data[i + 1] - gray) * saturation;
+                data[i + 2] = gray + (data[i + 2] - gray) * saturation;
+                
+                // تطبيق التلوين
+                if (tintAmount > 0) {
+                    data[i] = data[i] * (1 - tintAmount) + tintR * tintAmount;
+                    data[i + 1] = data[i + 1] * (1 - tintAmount) + tintG * tintAmount;
+                    data[i + 2] = data[i + 2] * (1 - tintAmount) + tintB * tintAmount;
+                }
+                
+                // تأكد من أن القيم ضمن النطاق الصحيح
+                data[i] = Math.max(0, Math.min(255, data[i]));
+                data[i + 1] = Math.max(0, Math.min(255, data[i + 1]));
+                data[i + 2] = Math.max(0, Math.min(255, data[i + 2]));
+            }
+            
+            ctx.putImageData(imageData, 0, 0);
+        }
+        
+        // وظيفة إعداد محرر الفيديو
+        function setupVideoEditor() {
+            const loadVideoFromGalleryBtn = document.getElementById('loadVideoFromGalleryBtn');
+            const uploadVideoBtn = document.getElementById('uploadVideoBtn');
+            const loadVideoFromUrlBtn = document.getElementById('loadVideoFromUrlBtn');
+            const videoInput = document.createElement('input');
+            videoInput.type = 'file';
+            videoInput.accept = 'video/*';
+            videoInput.style.display = 'none';
+            document.body.appendChild(videoInput);
+            
+            // تحميل الفيديو من المعرض
+            loadVideoFromGalleryBtn.addEventListener('click', function() {
+                openGalleryModal('video');
+            });
+            
+            // رفع فيديو من الجهاز
+            uploadVideoBtn.addEventListener('click', function() {
+                videoInput.click();
+            });
+            
+            videoInput.addEventListener('change', function(e) {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    const videoUrl = URL.createObjectURL(file);
+                    loadVideoForEditing(videoUrl);
+                }
+            });
+            
+            // تحميل فيديو من رابط
+            loadVideoFromUrlBtn.addEventListener('click', function() {
+                openUrlModal('video');
+            });
+            
+            // إعداد أدوات تحرير الفيديو
+            setupVideoEditorTools();
+        }
+        
+        // تحميل فيديو للتحرير
+        function loadVideoForEditing(videoSrc) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = videoSrc;
+            videoPlayer.load();
+            currentVideo = videoSrc;
+            currentMediaType = 'video';
+            
+            // عرض المحرر وإخفاء التعليمات
+            document.getElementById('videoEditorContainer').classList.remove('hidden');
+            document.getElementById('videoInstructions').classList.add('hidden');
+            
+            showToast('تم تحميل الفيديو للتحرير بنجاح', 'success');
+        }
+        
+        // إعداد أدوات تحرير الفيديو
+        function setupVideoEditorTools() {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const trimStart = document.getElementById('videoTrimStart');
+            const trimStartValue = document.getElementById('trimStartValue');
+            const trimEnd = document.getElementById('videoTrimEnd');
+            const trimEndValue = document.getElementById('trimEndValue');
+            const videoVolume = document.getElementById('videoVolume');
+            const volumeValue = document.getElementById('volumeValue');
+            const videoSpeed = document.getElementById('videoSpeed');
+            const resetVideoBtn = document.getElementById('resetVideoBtn');
+            const applyVideoEditBtn = document.getElementById('applyVideoEditBtn');
+            const saveVideoBtn = document.getElementById('saveVideoBtn');
+            const addVideoToPersonBtn = document.getElementById('addVideoToPersonBtn');
+            
+            // تحديث قيم القص
+            trimStart.addEventListener('input', function() {
+                trimStartValue.textContent = this.value + '%';
+            });
+            
+            trimEnd.addEventListener('input', function() {
+                trimEndValue.textContent = this.value + '%';
+            });
+            
+            // تحديث مستوى الصوت
+            videoVolume.addEventListener('input', function() {
+                volumeValue.textContent = this.value + '%';
+                videoPlayer.volume = this.value / 100;
+            });
+            
+            // تحديث سرعة التشغيل
+            videoSpeed.addEventListener('change', function() {
+                videoPlayer.playbackRate = parseFloat(this.value);
+            });
+            
+            // إعادة تعيين الفيديو
+            resetVideoBtn.addEventListener('click', function() {
+                trimStart.value = 0;
+                trimStartValue.textContent = '0%';
+                trimEnd.value = 100;
+                trimEndValue.textContent = '100%';
+                videoVolume.value = 100;
+                volumeValue.textContent = '100%';
+                videoSpeed.value = 1;
+                videoPlayer.volume = 1;
+                videoPlayer.playbackRate = 1;
+                videoPlayer.currentTime = 0;
+                
+                showToast('تمت إعادة تعيين الفيديو', 'info');
+            });
+            
+            // تطبيق تعديلات الفيديو
+            applyVideoEditBtn.addEventListener('click', function() {
+                if (!currentVideo) return;
+                
+                // في تطبيق حقيقي، هنا نستخدم مكتبة لقص الفيديو
+                // للتبسيط، سنقوم فقط بتغيير وقت البداية والنهاية الظاهري
+                const startPercent = trimStart.value / 100;
+                const endPercent = trimEnd.value / 100;
+                
+                if (videoPlayer.duration) {
+                    videoPlayer.currentTime = videoPlayer.duration * startPercent;
+                }
+                
+                showToast('تم تطبيق تعديلات القص على الفيديو', 'success');
+            });
+            
+            // حفظ الفيديو
+            saveVideoBtn.addEventListener('click', function() {
+                if (!currentVideo) return;
+                
+                // في تطبيق حقيقي، هنا نستخدم مكتبة لتصدير الفيديو
+                // للتبسيط، سنقوم بتحميل الفيديو الأصلي
+                const link = document.createElement('a');
+                link.href = currentVideo;
+                link.download = 'فيديو-معدل-' + Date.now() + '.mp4';
+                link.click();
+                
+                showToast('سيتم تحميل الفيديو الأصلي (في التطبيق الكامل سيتم تصدير الفيديو المعدل)', 'info');
+            });
+            
+            // إضافة الفيديو لشخص
+            addVideoToPersonBtn.addEventListener('click', function() {
+                if (!currentVideo) return;
+                
+                // إنشاء قائمة بالأشخاص
+                let optionsHTML = '<option value="">اختر شخصاً</option>';
+                people.forEach(person => {
+                    optionsHTML += `<option value="${person.id}">${person.name}</option>`;
+                });
+                
+                const personId = prompt(`أدخل معرف الشخص لإضافة الفيديو إليه:\n${people.map(p => `${p.id}: ${p.name}`).join('\n')}`);
+                
+                if (personId) {
+                    const person = people.find(p => p.id === parseInt(personId));
+                    if (person) {
+                        // إضافة الفيديو إلى معرض الشخص
+                        person.videos.push(currentVideo);
+                        
+                        // حفظ التغييرات
+                        localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
+                        
+                        showToast(`تمت إضافة الفيديو إلى معرض ${person.name} بنجاح!`, 'success');
+                    } else {
+                        showToast('لم يتم العثور على الشخص المحدد', 'error');
                     }
                 }
             });
         }
         
-        // تطبيق فلتر على الصورة
-        function applyFilter(type, value) {
-            if (!currentImage) return;
-            
-            // رسم الصورة الأصلية
-            canvas.width = Math.min(800, currentImage.width);
-            canvas.height = Math.min(500, currentImage.height);
-            ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
-            
-            // تطبيق الفلتر
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const data = imageData.data;
-            
-            for (let i = 0; i < data.length; i += 4) {
-                if (type === 'brightness') {
-                    // تطبيق السطوع
-                    data[i] += value;     // الأحمر
-                    data[i + 1] += value; // الأخضر
-                    data[i + 2] += value; // الأزرق
-                } else if (type === 'contrast') {
-                    // تطبيق التباين
-                    const factor = (259 * (value + 255)) / (255 * (259 - value));
-                    
-                    data[i] = factor * (data[i] - 128) + 128;
-                    data[i + 1] = factor * (data[i + 1] - 128) + 128;
-                    data[i + 2] = factor * (data[i + 2] - 128) + 128;
+        // وظيفة إعداد صفحة الألبومات
+        function setupAlbumsPage() {
+            // مسح الألبوم
+            document.getElementById('clearAlbumBtn').addEventListener('click', function() {
+                if (confirm('هل أنت متأكد من مسح جميع محتويات الألبوم؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                    album = [];
+                    localStorage.setItem('memoryStudioAlbum', JSON.stringify(album));
+                    renderAlbumContent();
+                    showToast('تم مسح الألبوم بنجاح', 'success');
                 }
+            });
+            
+            // إضافة محتوى للألبوم
+            document.getElementById('addToAlbumBtn').addEventListener('click', function() {
+                openAddToAlbumModal();
+            });
+            
+            // تغيير لون إطار الألبوم
+            document.querySelectorAll('.frame-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // إزالة النشاط من جميع الخيارات
+                    document.querySelectorAll('.frame-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    
+                    // إضافة النشاط للخيار المحدد
+                    this.classList.add('active');
+                    
+                    // تغيير لون الإطار
+                    const color = this.getAttribute('data-color');
+                    const albumFrame = document.getElementById('mainAlbumFrame');
+                    albumFrame.style.boxShadow = `inset 0 0 0 5px var(--frame-color-${color}), 0 8px 25px rgba(0,0,0,0.15)`;
+                    
+                    // إضافة متغيرات الألوان للأنماط
+                    const style = document.createElement('style');
+                    style.innerHTML = `
+                        :root {
+                            --frame-color-1: #FF9A3D;
+                            --frame-color-2: #4CAF50;
+                            --frame-color-3: #2196F3;
+                            --frame-color-4: #9C27B0;
+                            --frame-color-5: #FFC93D;
+                            --frame-color-6: #795548;
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    showToast('تم تغيير لون إطار الألبوم', 'success');
+                });
+            });
+            
+            // عرض محتوى الألبوم
+            renderAlbumContent();
+        }
+        
+        // عرض محتوى الألبوم
+        function renderAlbumContent() {
+            const albumContent = document.getElementById('albumContent');
+            const emptyAlbum = document.getElementById('emptyAlbum');
+            
+            if (album.length === 0) {
+                albumContent.innerHTML = '';
+                emptyAlbum.style.display = 'block';
+                return;
             }
             
-            ctx.putImageData(imageData, 0, 0);
+            emptyAlbum.style.display = 'none';
             
-            // تحديث الصورة الحالية
-            const tempCanvas = document.createElement('canvas');
-            const tempCtx = tempCanvas.getContext('2d');
-            tempCanvas.width = canvas.width;
-            tempCanvas.height = canvas.height;
-            tempCtx.drawImage(canvas, 0, 0);
+            let albumHTML = '';
             
-            currentImage = new Image();
-            currentImage.src = tempCanvas.toDataURL();
-        }
-        
-        // وظيفة إعداد محرر الفيديو
-        function setupVideoEditor() {
-            const videoUpload = document.getElementById('videoUploadEditor');
-            const videoInput = document.getElementById('videoInputEditor');
-            const editorContainer = document.getElementById('videoEditorContainer');
-            const instructions = document.getElementById('videoInstructions');
-            const videoPlayer = document.getElementById('videoPlayer');
-            let videoFile = null;
-            
-            // رفع فيديو للتحرير
-            videoUpload.addEventListener('click', () => videoInput.click());
-            videoInput.addEventListener('change', function(e) {
-                if (this.files && this.files[0]) {
-                    videoFile = this.files[0];
-                    const videoUrl = URL.createObjectURL(videoFile);
-                    
-                    // عرض المحرر وإخفاء التعليمات
-                    editorContainer.classList.remove('hidden');
-                    instructions.classList.add('hidden');
-                    
-                    // تعيين مصدر الفيديو
-                    videoPlayer.src = videoUrl;
-                    videoPlayer.load();
-                    
-                    // تعيين النطاق الزمني
-                    const range = document.getElementById('videoTrimRange');
-                    range.value = 0;
-                    
-                    // تحديث النطاق الزمني أثناء تشغيل الفيديو
-                    videoPlayer.addEventListener('timeupdate', function() {
-                        if (videoPlayer.duration) {
-                            const percent = (videoPlayer.currentTime / videoPlayer.duration) * 100;
-                            range.value = percent;
-                        }
-                    });
-                    
-                    // تغيير وقت الفيديو عند تحريك النطاق
-                    range.addEventListener('input', function() {
-                        if (videoPlayer.duration) {
-                            videoPlayer.currentTime = (this.value / 100) * videoPlayer.duration;
-                        }
-                    });
+            album.forEach((item, index) => {
+                if (item.type === 'image') {
+                    albumHTML += `
+                        <div class="gallery-item" data-index="${index}">
+                            <img src="${item.src}" alt="صورة في الألبوم">
+                            <div class="overlay">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>صورة ${index + 1}</span>
+                                    <button class="btn btn-sm btn-danger delete-album-item" data-index="${index}" style="padding: 5px 10px; font-size: 0.8rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                <small>${item.date}</small>
+                            </div>
+                            <div class="gallery-actions">
+                                <button class="btn btn-sm btn-danger delete-album-item" data-index="${index}" style="padding: 5px 8px;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                } else if (item.type === 'video') {
+                    albumHTML += `
+                        <div class="gallery-item" data-index="${index}">
+                            <video>
+                                <source src="${item.src}" type="video/mp4">
+                                متصفحك لا يدعم تشغيل الفيديو
+                            </video>
+                            <div class="overlay">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>فيديو ${index + 1}</span>
+                                    <button class="btn btn-sm btn-danger delete-album-item" data-index="${index}" style="padding: 5px 10px; font-size: 0.8rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                <small>${item.date}</small>
+                            </div>
+                            <div class="gallery-actions">
+                                <button class="btn btn-sm btn-danger delete-album-item" data-index="${index}" style="padding: 5px 8px;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
                 }
             });
             
-            // إعداد أزرار تحرير الفيديو
-            let trimStart = 0;
-            let trimEnd = 100;
+            albumContent.innerHTML = albumHTML;
             
-            document.getElementById('trimStartBtn').addEventListener('click', function() {
-                if (!videoFile) return;
-                trimStart = document.getElementById('videoTrimRange').value;
-                alert(`تم تحديد بداية القص عند ${trimStart}%`);
+            // إضافة مستمعي الأحداث لحذف العناصر
+            document.querySelectorAll('.delete-album-item').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const index = parseInt(this.getAttribute('data-index'));
+                    deleteAlbumItem(index);
+                });
             });
             
-            document.getElementById('trimEndBtn').addEventListener('click', function() {
-                if (!videoFile) return;
-                trimEnd = document.getElementById('videoTrimRange').value;
-                alert(`تم تحديد نهاية القص عند ${trimEnd}%`);
-            });
-            
-            document.getElementById('applyTrimBtn').addEventListener('click', function() {
-                if (!videoFile) return;
-                alert(`سيتم قص الفيديو من ${trimStart}% إلى ${trimEnd}%`);
-                // في التطبيق الكامل، هنا نستخدم مكتبة لقص الفيديو
-            });
-            
-            document.getElementById('resetVideoBtn').addEventListener('click', function() {
-                if (!videoFile) return;
-                videoPlayer.currentTime = 0;
-                trimStart = 0;
-                trimEnd = 100;
-                document.getElementById('videoTrimRange').value = 0;
-            });
-            
-            document.getElementById('saveVideoBtn').addEventListener('click', function() {
-                if (!videoFile) return;
-                alert('سيتم حفظ الفيديو على جهازك. في التطبيق الكامل، سيتم تصدير الفيديو بعد التعديل.');
-                // في التطبيق الكامل، هنا نستخدم مكتبة لتصدير الفيديو
+            // إضافة مستمعي الأحداث لتشغيل الفيديو عند النقر
+            document.querySelectorAll('.gallery-item video').forEach(video => {
+                const parent = video.parentElement;
+                parent.addEventListener('click', function() {
+                    if (video.paused) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                });
             });
         }
         
-        // وظيفة إعداد النافذة المنبثقة
-        function setupModal() {
-            const modal = document.getElementById('personModal');
-            const closeBtn = document.getElementById('closePersonModal');
+        // إضافة عنصر للألبوم
+        function addToAlbum(item) {
+            album.push(item);
+            localStorage.setItem('memoryStudioAlbum', JSON.stringify(album));
+            renderAlbumContent();
+        }
+        
+        // حذف عنصر من الألبوم
+        function deleteAlbumItem(index) {
+            if (confirm('هل أنت متأكد من حذف هذا العنصر من الألبوم؟')) {
+                album.splice(index, 1);
+                localStorage.setItem('memoryStudioAlbum', JSON.stringify(album));
+                renderAlbumContent();
+                showToast('تم حذف العنصر من الألبوم', 'success');
+            }
+        }
+        
+        // وظيفة إعداد النوافذ المنبثقة
+        function setupModals() {
+            // نافذة معاينة الشخص
+            const personModal = document.getElementById('personModal');
+            const closePersonModal = document.getElementById('closePersonModal');
             
-            // إغلاق النافذة عند النقر على زر الإغلاق
-            closeBtn.addEventListener('click', function() {
-                modal.classList.remove('active');
+            closePersonModal.addEventListener('click', function() {
+                personModal.classList.remove('active');
             });
             
-            // إغلاق النافذة عند النقر خارج المحتوى
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
+            personModal.addEventListener('click', function(e) {
+                if (e.target === personModal) {
+                    personModal.classList.remove('active');
+                }
+            });
+            
+            // نافذة المعرض
+            const galleryModal = document.getElementById('galleryModal');
+            const closeGalleryModal = document.getElementById('closeGalleryModal');
+            
+            closeGalleryModal.addEventListener('click', function() {
+                galleryModal.classList.remove('active');
+            });
+            
+            galleryModal.addEventListener('click', function(e) {
+                if (e.target === galleryModal) {
+                    galleryModal.classList.remove('active');
+                }
+            });
+            
+            // نافذة إضافة للألبوم
+            const addToAlbumModal = document.getElementById('addToAlbumModal');
+            const closeAddToAlbumModal = document.getElementById('closeAddToAlbumModal');
+            
+            closeAddToAlbumModal.addEventListener('click', function() {
+                addToAlbumModal.classList.remove('active');
+            });
+            
+            addToAlbumModal.addEventListener('click', function(e) {
+                if (e.target === addToAlbumModal) {
+                    addToAlbumModal.classList.remove('active');
+                }
+            });
+            
+            // نافذة الرابط
+            const urlModal = document.getElementById('urlModal');
+            const closeUrlModal = document.getElementById('closeUrlModal');
+            const cancelUrlBtn = document.getElementById('cancelUrlBtn');
+            
+            closeUrlModal.addEventListener('click', function() {
+                urlModal.classList.remove('active');
+            });
+            
+            cancelUrlBtn.addEventListener('click', function() {
+                urlModal.classList.remove('active');
+            });
+            
+            urlModal.addEventListener('click', function(e) {
+                if (e.target === urlModal) {
+                    urlModal.classList.remove('active');
                 }
             });
         }
         
-        // وظيفة فتح نافذة معاينة الشخص
+        // فتح نافذة معاينة الشخص
         function openPersonModal(personId) {
             const person = people.find(p => p.id === personId);
             if (!person) return;
@@ -1360,14 +2537,33 @@
                             <p><strong>الوصف:</strong> ${person.description}</p>
                         </div>
                     </div>
+                    
+                    <div class="person-tags">
+                        <div class="person-tag">${person.images.length} صورة</div>
+                        <div class="person-tag">${person.videos.length} فيديو</div>
+                    </div>
+                    
+                    <div class="person-actions">
+                        <button class="btn btn-sm btn-danger" id="deletePersonBtn" data-id="${person.id}">
+                            <i class="fas fa-trash"></i> حذف الشخص
+                        </button>
+                        <button class="btn btn-sm" id="addMediaToPersonBtn" data-id="${person.id}">
+                            <i class="fas fa-plus"></i> إضافة محتوى
+                        </button>
+                        <button class="btn btn-sm btn-info" id="editPersonBtn" data-id="${person.id}">
+                            <i class="fas fa-edit"></i> تعديل
+                        </button>
+                    </div>
                 </div>
             `;
             
             // عرض الصوت إذا كان موجوداً
             if (person.audio) {
                 modalContent += `
-                    <div style="margin: 20px 0; background-color: #f0f7ff; padding: 15px; border-radius: 10px;">
-                        <h3 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-volume-up"></i> صوت ${person.name}</h3>
+                    <div style="margin: 25px 0; background: #FFF9F0; padding: 20px; border-radius: 15px;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-volume-up"></i> صوت ${person.name}
+                        </h3>
                         <audio controls style="width: 100%;">
                             <source src="${person.audio}" type="audio/mpeg">
                             متصفحك لا يدعم تشغيل الصوت
@@ -1379,52 +2575,85 @@
             // عرض معرض الصور
             if (person.images.length > 0) {
                 modalContent += `
-                    <h3 style="color: var(--primary-color); margin: 20px 0 10px;"><i class="fas fa-images"></i> معرض الصور (${person.images.length})</h3>
-                    <div class="gallery">
+                    <div class="album-section">
+                        <div class="album-header">
+                            <div class="album-title">
+                                <i class="fas fa-images"></i>
+                                <h3>معرض الصور (${person.images.length})</h3>
+                            </div>
+                            <button class="btn btn-sm btn-danger" id="clearPersonImagesBtn" data-id="${person.id}">
+                                <i class="fas fa-trash"></i> مسح الصور
+                            </button>
+                        </div>
+                        <div class="gallery">
                 `;
                 
                 person.images.forEach((img, index) => {
                     modalContent += `
                         <div class="gallery-item">
                             <img src="${img}" alt="صورة ${person.name} ${index + 1}">
-                            <div class="overlay">صورة ${index + 1}</div>
+                            <div class="overlay">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>صورة ${index + 1}</span>
+                                    <button class="btn btn-sm btn-danger delete-person-image" data-id="${person.id}" data-index="${index}" style="padding: 5px 10px; font-size: 0.8rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="gallery-actions">
+                                <button class="btn btn-sm btn-danger delete-person-image" data-id="${person.id}" data-index="${index}" style="padding: 5px 8px;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </div>
                     `;
                 });
                 
-                modalContent += `</div>`;
+                modalContent += `</div></div>`;
             }
             
             // عرض معرض الفيديوهات
             if (person.videos.length > 0) {
                 modalContent += `
-                    <h3 style="color: var(--primary-color); margin: 20px 0 10px;"><i class="fas fa-video"></i> معرض الفيديوهات (${person.videos.length})</h3>
-                    <div class="gallery">
+                    <div class="album-section">
+                        <div class="album-header">
+                            <div class="album-title">
+                                <i class="fas fa-video"></i>
+                                <h3>معرض الفيديوهات (${person.videos.length})</h3>
+                            </div>
+                            <button class="btn btn-sm btn-danger" id="clearPersonVideosBtn" data-id="${person.id}">
+                                <i class="fas fa-trash"></i> مسح الفيديوهات
+                            </button>
+                        </div>
+                        <div class="gallery">
                 `;
                 
                 person.videos.forEach((video, index) => {
                     modalContent += `
                         <div class="gallery-item">
-                            <video controls>
+                            <video>
                                 <source src="${video}" type="video/mp4">
                                 متصفحك لا يدعم تشغيل الفيديو
                             </video>
-                            <div class="overlay">فيديو ${index + 1}</div>
+                            <div class="overlay">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>فيديو ${index + 1}</span>
+                                    <button class="btn btn-sm btn-danger delete-person-video" data-id="${person.id}" data-index="${index}" style="padding: 5px 10px; font-size: 0.8rem;">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="gallery-actions">
+                                <button class="btn btn-sm btn-danger delete-person-video" data-id="${person.id}" data-index="${index}" style="padding: 5px 8px;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </div>
                     `;
                 });
                 
-                modalContent += `</div>`;
+                modalContent += `</div></div>`;
             }
-            
-            // إضافة أزرار التحكم
-            modalContent += `
-                <div style="display: flex; justify-content: center; margin-top: 30px; flex-wrap: wrap;">
-                    <button class="btn" id="addImageToPerson"><i class="fas fa-image"></i> إضافة صورة</button>
-                    <button class="btn" id="addVideoToPerson"><i class="fas fa-video"></i> إضافة فيديو</button>
-                    <button class="btn btn-accent" id="editPersonBtn"><i class="fas fa-edit"></i> تعديل الملف</button>
-                </div>
-            `;
             
             // تعيين المحتوى في النافذة
             document.getElementById('modalPersonContent').innerHTML = modalContent;
@@ -1435,69 +2664,555 @@
             // حفظ معرف الشخص الحالي
             currentPersonId = personId;
             
-            // إعداد أزرار التحكم بعد إضافتها للصفحة
+            // إضافة مستمعي الأحداث للأزرار بعد إضافتها للصفحة
             setTimeout(() => {
-                // زر إضافة صورة
-                document.getElementById('addImageToPerson').addEventListener('click', function() {
-                    const input = document.createElement('input');
-                    input.type = 'file';
-                    input.accept = 'image/*';
-                    
-                    input.addEventListener('change', function(e) {
-                        if (this.files && this.files[0]) {
-                            const file = this.files[0];
-                            const imageUrl = URL.createObjectURL(file);
-                            
-                            // إضافة الصورة للشخص
-                            const person = people.find(p => p.id === currentPersonId);
-                            if (person) {
-                                person.images.push(imageUrl);
-                                localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
-                                
-                                // إعادة فتح النافذة لعرض التحديث
-                                openPersonModal(currentPersonId);
-                            }
-                        }
-                    });
-                    
-                    input.click();
+                // زر حذف الشخص
+                document.getElementById('deletePersonBtn').addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    deletePerson(id);
                 });
                 
-                // زر إضافة فيديو
-                document.getElementById('addVideoToPerson').addEventListener('click', function() {
-                    const input = document.createElement('input');
-                    input.type = 'file';
-                    input.accept = 'video/*';
-                    
-                    input.addEventListener('change', function(e) {
-                        if (this.files && this.files[0]) {
-                            const file = this.files[0];
-                            const videoUrl = URL.createObjectURL(file);
-                            
-                            // إضافة الفيديو للشخص
-                            const person = people.find(p => p.id === currentPersonId);
-                            if (person) {
-                                person.videos.push(videoUrl);
-                                localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
-                                
-                                // إعادة فتح النافذة لعرض التحديث
-                                openPersonModal(currentPersonId);
-                            }
-                        }
-                    });
-                    
-                    input.click();
+                // زر إضافة محتوى للشخص
+                document.getElementById('addMediaToPersonBtn').addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    addMediaToPerson(id);
                 });
                 
-                // زر تعديل الملف
+                // زر تعديل الشخص
                 document.getElementById('editPersonBtn').addEventListener('click', function() {
-                    alert('ميزة تعديل الملف الشخصي قيد التطوير');
-                    // في التطبيق الكامل، هنا نفتح نموذج تعديل الشخص
+                    const id = parseInt(this.getAttribute('data-id'));
+                    editPerson(id);
+                });
+                
+                // زر مسح صور الشخص
+                if (document.getElementById('clearPersonImagesBtn')) {
+                    document.getElementById('clearPersonImagesBtn').addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        clearPersonImages(id);
+                    });
+                }
+                
+                // زر مسح فيديوهات الشخص
+                if (document.getElementById('clearPersonVideosBtn')) {
+                    document.getElementById('clearPersonVideosBtn').addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        clearPersonVideos(id);
+                    });
+                }
+                
+                // أزرار حذف الصور الفردية
+                document.querySelectorAll('.delete-person-image').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const id = parseInt(this.getAttribute('data-id'));
+                        const index = parseInt(this.getAttribute('data-index'));
+                        deletePersonImage(id, index);
+                    });
+                });
+                
+                // أزرار حذف الفيديوهات الفردية
+                document.querySelectorAll('.delete-person-video').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const id = parseInt(this.getAttribute('data-id'));
+                        const index = parseInt(this.getAttribute('data-index'));
+                        deletePersonVideo(id, index);
+                    });
+                });
+                
+                // إضافة مستمعي الأحداث لتشغيل الفيديو عند النقر
+                document.querySelectorAll('.gallery-item video').forEach(video => {
+                    const parent = video.parentElement;
+                    parent.addEventListener('click', function() {
+                        if (video.paused) {
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    });
                 });
             }, 100);
         }
         
-        // وظيفة إعداد رفع الملفات
+        // حذف شخص
+        function deletePerson(personId) {
+            if (confirm('هل أنت متأكد من حذف هذا الشخص وجميع ذكرياته؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                people = people.filter(p => p.id !== personId);
+                localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
+                
+                // تحديث العروض
+                renderFeaturedPeople();
+                renderAllPeople();
+                updateTabBadges();
+                
+                // إغلاق النافذة
+                document.getElementById('personModal').classList.remove('active');
+                
+                showToast('تم حذف الشخص بنجاح', 'success');
+            }
+        }
+        
+        // إضافة محتوى لشخص
+        function addMediaToPerson(personId) {
+            const person = people.find(p => p.id === personId);
+            if (!person) return;
+            
+            const type = prompt('أدخل نوع المحتوى (صورة أو فيديو):');
+            if (type === 'صورة' || type === 'image') {
+                const url = prompt('أدخل رابط الصورة:');
+                if (url) {
+                    person.images.push(url);
+                    localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
+                    
+                    // إعادة فتح النافذة لعرض التحديث
+                    openPersonModal(personId);
+                    showToast('تمت إضافة الصورة بنجاح', 'success');
+                }
+            } else if (type === 'فيديو' || type === 'video') {
+                const url = prompt('أدخل رابط الفيديو:');
+                if (url) {
+                    person.videos.push(url);
+                    localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
+                    
+                    // إعادة فتح النافذة لعرض التحديث
+                    openPersonModal(personId);
+                    showToast('تمت إضافة الفيديو بنجاح', 'success');
+                }
+            }
+        }
+        
+        // تعديل شخص
+        function editPerson(personId) {
+            const person = people.find(p => p.id === personId);
+            if (!person) return;
+            
+            const newName = prompt('أدخل الاسم الجديد:', person.name);
+            if (newName) person.name = newName;
+            
+            const newRelation = prompt('أدخل العلاقة الجديدة:', person.relation);
+            if (newRelation) person.relation = newRelation;
+            
+            const newDescription = prompt('أدخل الوصف الجديد:', person.description);
+            if (newDescription) person.description = newDescription;
+            
+            localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
+            
+            // إعادة فتح النافذة لعرض التحديث
+            openPersonModal(personId);
+            showToast('تم تعديل بيانات الشخص بنجاح', 'success');
+        }
+        
+        // مسح جميع صور الشخص
+        function clearPersonImages(personId) {
+            if (confirm('هل أنت متأكد من مسح جميع صور هذا الشخص؟')) {
+                const person = people.find(p => p.id === personId);
+                if (person) {
+                    person.images = [];
+                    localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
+                    
+                    // إعادة فتح النافذة لعرض التحديث
+                    openPersonModal(personId);
+                    showToast('تم مسح جميع صور الشخص', 'success');
+                }
+            }
+        }
+        
+        // مسح جميع فيديوهات الشخص
+        function clearPersonVideos(personId) {
+            if (confirm('هل أنت متأكد من مسح جميع فيديوهات هذا الشخص؟')) {
+                const person = people.find(p => p.id === personId);
+                if (person) {
+                    person.videos = [];
+                    localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
+                    
+                    // إعادة فتح النافذة لعرض التحديث
+                    openPersonModal(personId);
+                    showToast('تم مسح جميع فيديوهات الشخص', 'success');
+                }
+            }
+        }
+        
+        // حذف صورة فردية لشخص
+        function deletePersonImage(personId, imageIndex) {
+            if (confirm('هل أنت متأكد من حذف هذه الصورة؟')) {
+                const person = people.find(p => p.id === personId);
+                if (person) {
+                    person.images.splice(imageIndex, 1);
+                    localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
+                    
+                    // إعادة فتح النافذة لعرض التحديث
+                    openPersonModal(personId);
+                    showToast('تم حذف الصورة بنجاح', 'success');
+                }
+            }
+        }
+        
+        // حذف فيديو فردي لشخص
+        function deletePersonVideo(personId, videoIndex) {
+            if (confirm('هل أنت متأكد من حذف هذا الفيديو؟')) {
+                const person = people.find(p => p.id === personId);
+                if (person) {
+                    person.videos.splice(videoIndex, 1);
+                    localStorage.setItem('memoryStudioPeople', JSON.stringify(people));
+                    
+                    // إعادة فتح النافذة لعرض التحديث
+                    openPersonModal(personId);
+                    showToast('تم حذف الفيديو بنجاح', 'success');
+                }
+            }
+        }
+        
+        // فتح نافذة المعرض
+        function openGalleryModal(type) {
+            const galleryContent = document.getElementById('galleryContent');
+            let galleryHTML = '<h3 style="color: var(--primary-color); margin-bottom: 20px;">اختر من المعرض:</h3>';
+            
+            if (type === 'image') {
+                // جمع جميع الصور من جميع الأشخاص
+                let allImages = [];
+                people.forEach(person => {
+                    person.images.forEach(img => {
+                        allImages.push({
+                            src: img,
+                            person: person.name
+                        });
+                    });
+                });
+                
+                if (allImages.length === 0) {
+                    galleryHTML += '<p style="text-align: center; color: #888; padding: 40px;">لا توجد صور في المعرض بعد</p>';
+                } else {
+                    galleryHTML += '<div class="gallery">';
+                    allImages.forEach((img, index) => {
+                        galleryHTML += `
+                            <div class="gallery-item" data-src="${img.src}">
+                                <img src="${img.src}" alt="صورة ${index + 1}">
+                                <div class="overlay">
+                                    <small>${img.person}</small>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    galleryHTML += '</div>';
+                }
+            } else if (type === 'video') {
+                // جمع جميع الفيديوهات من جميع الأشخاص
+                let allVideos = [];
+                people.forEach(person => {
+                    person.videos.forEach(video => {
+                        allVideos.push({
+                            src: video,
+                            person: person.name
+                        });
+                    });
+                });
+                
+                if (allVideos.length === 0) {
+                    galleryHTML += '<p style="text-align: center; color: #888; padding: 40px;">لا توجد فيديوهات في المعرض بعد</p>';
+                } else {
+                    galleryHTML += '<div class="gallery">';
+                    allVideos.forEach((video, index) => {
+                        galleryHTML += `
+                            <div class="gallery-item" data-src="${video.src}">
+                                <video>
+                                    <source src="${video.src}" type="video/mp4">
+                                    متصفحك لا يدعم تشغيل الفيديو
+                                </video>
+                                <div class="overlay">
+                                    <small>${video.person}</small>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    galleryHTML += '</div>';
+                }
+            }
+            
+            galleryContent.innerHTML = galleryHTML;
+            
+            // فتح النافذة
+            document.getElementById('galleryModal').classList.add('active');
+            
+            // إضافة مستمعي الأحداث لاختيار العناصر
+            setTimeout(() => {
+                document.querySelectorAll('#galleryContent .gallery-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const src = this.getAttribute('data-src');
+                        
+                        if (type === 'image') {
+                            loadImageForEditing(src);
+                        } else if (type === 'video') {
+                            loadVideoForEditing(src);
+                        }
+                        
+                        // إغلاق النافذة
+                        document.getElementById('galleryModal').classList.remove('active');
+                    });
+                });
+                
+                // إضافة مستمعي الأحداث لتشغيل الفيديو عند النقر
+                document.querySelectorAll('#galleryContent .gallery-item video').forEach(video => {
+                    const parent = video.parentElement;
+                    parent.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        if (video.paused) {
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    });
+                });
+            }, 100);
+        }
+        
+        // فتح نافذة إضافة محتوى للألبوم
+        function openAddToAlbumModal() {
+            const albumGallerySelection = document.getElementById('albumGallerySelection');
+            
+            // جمع جميع الصور والفيديوهات من جميع الأشخاص
+            let allMedia = [];
+            people.forEach(person => {
+                person.images.forEach(img => {
+                    allMedia.push({
+                        type: 'image',
+                        src: img,
+                        person: person.name
+                    });
+                });
+                
+                person.videos.forEach(video => {
+                    allMedia.push({
+                        type: 'video',
+                        src: video,
+                        person: person.name
+                    });
+                });
+            });
+            
+            let galleryHTML = '';
+            
+            if (allMedia.length === 0) {
+                galleryHTML = '<p style="text-align: center; color: #888; padding: 40px;">لا توجد محتويات في المعرض بعد</p>';
+            } else {
+                allMedia.forEach((media, index) => {
+                    if (media.type === 'image') {
+                        galleryHTML += `
+                            <div class="gallery-item" data-type="${media.type}" data-src="${media.src}">
+                                <img src="${media.src}" alt="صورة ${index + 1}">
+                                <div class="overlay">
+                                    <small>${media.person}</small>
+                                </div>
+                            </div>
+                        `;
+                    } else if (media.type === 'video') {
+                        galleryHTML += `
+                            <div class="gallery-item" data-type="${media.type}" data-src="${media.src}">
+                                <video>
+                                    <source src="${media.src}" type="video/mp4">
+                                    متصفحك لا يدعم تشغيل الفيديو
+                                </video>
+                                <div class="overlay">
+                                    <small>${media.person}</small>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+            
+            albumGallerySelection.innerHTML = galleryHTML;
+            
+            // فتح النافذة
+            document.getElementById('addToAlbumModal').classList.add('active');
+            
+            // إعداد أزرار الإضافة
+            document.getElementById('addImageToAlbumBtn').addEventListener('click', function() {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                
+                input.addEventListener('change', function(e) {
+                    if (this.files && this.files[0]) {
+                        const file = this.files[0];
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            addToAlbum({
+                                type: 'image',
+                                src: e.target.result,
+                                date: new Date().toLocaleDateString('ar-SA')
+                            });
+                            
+                            // إغلاق النافذة
+                            document.getElementById('addToAlbumModal').classList.remove('active');
+                        };
+                        
+                        reader.readAsDataURL(file);
+                    }
+                });
+                
+                input.click();
+            });
+            
+            document.getElementById('addVideoToAlbumBtn').addEventListener('click', function() {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'video/*';
+                
+                input.addEventListener('change', function(e) {
+                    if (this.files && this.files[0]) {
+                        const file = this.files[0];
+                        const videoUrl = URL.createObjectURL(file);
+                        
+                        addToAlbum({
+                            type: 'video',
+                            src: videoUrl,
+                            date: new Date().toLocaleDateString('ar-SA')
+                        });
+                        
+                        // إغلاق النافذة
+                        document.getElementById('addToAlbumModal').classList.remove('active');
+                    }
+                });
+                
+                input.click();
+            });
+            
+            // إضافة مستمعي الأحداث لاختيار العناصر من المعرض
+            setTimeout(() => {
+                document.querySelectorAll('#albumGallerySelection .gallery-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const type = this.getAttribute('data-type');
+                        const src = this.getAttribute('data-src');
+                        
+                        addToAlbum({
+                            type: type,
+                            src: src,
+                            date: new Date().toLocaleDateString('ar-SA')
+                        });
+                        
+                        // إغلاق النافذة
+                        document.getElementById('addToAlbumModal').classList.remove('active');
+                    });
+                });
+                
+                // إضافة مستمعي الأحداث لتشغيل الفيديو عند النقر
+                document.querySelectorAll('#albumGallerySelection .gallery-item video').forEach(video => {
+                    const parent = video.parentElement;
+                    parent.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        if (video.paused) {
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    });
+                });
+            }, 100);
+        }
+        
+        // فتح نافذة الرابط
+        function openUrlModal(type) {
+            document.getElementById('urlModal').classList.add('active');
+            currentMediaType = type;
+            
+            // إعداد زر التحميل
+            document.getElementById('loadMediaUrlBtn').onclick = function() {
+                const url = document.getElementById('mediaUrl').value;
+                if (url) {
+                    if (type === 'image') {
+                        loadImageForEditing(url);
+                    } else if (type === 'video') {
+                        loadVideoForEditing(url);
+                    }
+                    
+                    // إغلاق النافذة
+                    document.getElementById('urlModal').classList.remove('active');
+                    document.getElementById('mediaUrl').value = '';
+                } else {
+                    showToast('الرجاء إدخال رابط صحيح', 'error');
+                }
+            };
+        }
+        
+        // إعداد البحث
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            function performSearch() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                
+                if (searchTerm === '') {
+                    renderAllPeople();
+                    showToast('الرجاء إدخال اسم للبحث', 'info');
+                    return;
+                }
+                
+                const filteredPeople = people.filter(person => 
+                    person.name.toLowerCase().includes(searchTerm) ||
+                    person.relation.toLowerCase().includes(searchTerm) ||
+                    person.description.toLowerCase().includes(searchTerm)
+                );
+                
+                const peopleContainer = document.getElementById('peopleList');
+                
+                if (filteredPeople.length === 0) {
+                    peopleContainer.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-search"></i>
+                            <h3>لا توجد نتائج</h3>
+                            <p>لم يتم العثور على أي شخص يتطابق مع "${searchTerm}"</p>
+                        </div>
+                    `;
+                    showToast('لم يتم العثور على نتائج', 'info');
+                    return;
+                }
+                
+                let peopleHTML = '';
+                
+                filteredPeople.forEach(person => {
+                    peopleHTML += `
+                        <div class="person-thumbnail" data-id="${person.id}">
+                            <img src="${person.avatar}" alt="${person.name}">
+                            <h3>${person.name}</h3>
+                            <p>${person.relation}</p>
+                            <div class="person-stats">
+                                <div class="person-stat">
+                                    <i class="fas fa-image"></i>
+                                    <span>${person.images.length}</span>
+                                </div>
+                                <div class="person-stat">
+                                    <i class="fas fa-video"></i>
+                                    <span>${person.videos.length}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                peopleContainer.innerHTML = peopleHTML;
+                
+                // إضافة مستمعي الأحداث لعرض تفاصيل الشخص
+                document.querySelectorAll('.person-thumbnail').forEach(thumb => {
+                    thumb.addEventListener('click', function() {
+                        const personId = parseInt(this.getAttribute('data-id'));
+                        openPersonModal(personId);
+                    });
+                });
+                
+                showToast(`تم العثور على ${filteredPeople.length} نتيجة`, 'success');
+            }
+        }
+        
+        // إعداد رفع الملفات
         function setupFileUploads() {
             // إضافة تأثير السحب والإفلات
             const uploadAreas = document.querySelectorAll('.upload-area');
@@ -1505,29 +3220,106 @@
             uploadAreas.forEach(area => {
                 area.addEventListener('dragover', function(e) {
                     e.preventDefault();
-                    this.style.backgroundColor = '#e9ecef';
+                    this.style.backgroundColor = '#FFEEDD';
                     this.style.borderColor = 'var(--accent-color)';
+                    this.style.transform = 'translateY(-5px)';
                 });
                 
                 area.addEventListener('dragleave', function(e) {
                     e.preventDefault();
-                    this.style.backgroundColor = '#f8f9fa';
+                    this.style.backgroundColor = '#FFF9F0';
                     this.style.borderColor = 'var(--primary-color)';
+                    this.style.transform = 'translateY(0)';
                 });
                 
                 area.addEventListener('drop', function(e) {
                     e.preventDefault();
-                    this.style.backgroundColor = '#f8f9fa';
+                    this.style.backgroundColor = '#FFF9F0';
                     this.style.borderColor = 'var(--primary-color)';
+                    this.style.transform = 'translateY(0)';
                     
                     // الحصول على الملفات المنسدلة
                     const files = e.dataTransfer.files;
                     if (files.length > 0) {
-                        // في التطبيق الكامل، هنا نتعامل مع الملفات المنسدلة
-                        alert(`تم سحب ${files.length} ملف`);
+                        const file = files[0];
+                        
+                        // تحديد نوع الملف
+                        if (file.type.startsWith('image/')) {
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                if (this.parentElement.id === 'avatarUpload') {
+                                    // صورة الشخص
+                                    document.getElementById('avatarPreview').innerHTML = `
+                                        <div style="background: #FFF9F0; padding: 20px; border-radius: 15px; display: inline-block;">
+                                            <img src="${e.target.result}" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary-color);">
+                                            <p style="margin-top: 15px; font-weight: 600; color: var(--primary-color);">تم رفع صورة الشخص</p>
+                                        </div>
+                                    `;
+                                } else {
+                                    // صورة للتحرير
+                                    loadImageForEditing(e.target.result);
+                                }
+                            };
+                            reader.readAsDataURL(file);
+                        } else if (file.type.startsWith('video/')) {
+                            const videoUrl = URL.createObjectURL(file);
+                            
+                            if (this.parentElement.id === 'videoEditorContainer' || this.id === 'videoUploadEditor') {
+                                // فيديو للتحرير
+                                loadVideoForEditing(videoUrl);
+                            }
+                        } else if (file.type.startsWith('audio/')) {
+                            const audioUrl = URL.createObjectURL(file);
+                            document.getElementById('audioPreview').innerHTML = `
+                                <div style="background: #FFF9F0; padding: 20px; border-radius: 15px; display: inline-block;">
+                                    <i class="fas fa-volume-up" style="color: var(--primary-color); font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                                    <p style="font-weight: 600; margin-bottom: 10px;">${file.name}</p>
+                                    <audio controls style="width: 300px;">
+                                        <source src="${audioUrl}" type="${file.type}">
+                                        متصفحك لا يدعم تشغيل الصوت
+                                    </audio>
+                                </div>
+                            `;
+                        }
+                        
+                        showToast(`تم رفع ${file.name} بنجاح`, 'success');
                     }
                 });
             });
+        }
+        
+        // إعداد الإشعارات
+        function setupToast() {
+            // وظيفة لعرض إشعار
+            window.showToast = function(message, type = 'info') {
+                const toastContainer = document.getElementById('toastContainer');
+                const toastId = 'toast-' + Date.now();
+                
+                const toast = document.createElement('div');
+                toast.id = toastId;
+                toast.className = `toast toast-${type}`;
+                toast.innerHTML = `
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                `;
+                
+                toastContainer.appendChild(toast);
+                
+                // إظهار الإشعار
+                setTimeout(() => {
+                    toast.classList.add('show');
+                }, 10);
+                
+                // إخفاء الإشعار بعد 5 ثوان
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        if (toast.parentNode) {
+                            toast.parentNode.removeChild(toast);
+                        }
+                    }, 400);
+                }, 5000);
+            };
         }
     </script>
 </body>
