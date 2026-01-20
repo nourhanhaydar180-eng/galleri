@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,27 +16,71 @@
         }
         
         :root {
-            --primary-color: #4a6fa5;
-            --secondary-color: #166088;
-            --accent-color: #2d936c;
+            --primary-color: #2e7d32;
+            --secondary-color: #1b5e20;
+            --accent-color: #4caf50;
             --light-color: #f8f9fa;
-            --dark-color: #343a40;
+            --dark-color: #263238;
             --border-color: #dee2e6;
-            --success-color: #28a745;
-            --danger-color: #dc3545;
-            --warning-color: #ffc107;
-            --info-color: #17a2b8;
+            --success-color: #388e3c;
+            --danger-color: #d32f2f;
+            --warning-color: #f57c00;
+            --info-color: #0288d1;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* السمات */
+        .theme-dark {
+            --primary-color: #4caf50;
+            --secondary-color: #2e7d32;
+            --accent-color: #81c784;
+            --light-color: #263238;
+            --dark-color: #f5f7fa;
+            --border-color: #37474f;
+            --success-color: #66bb6a;
+            --danger-color: #ef5350;
+            --warning-color: #ffb74d;
+            --info-color: #29b6f6;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .theme-white {
+            --primary-color: #2e7d32;
+            --secondary-color: #1b5e20;
+            --accent-color: #4caf50;
+            --light-color: #ffffff;
+            --dark-color: #263238;
+            --border-color: #e0e0e0;
+            --success-color: #388e3c;
+            --danger-color: #d32f2f;
+            --warning-color: #f57c00;
+            --info-color: #0288d1;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .theme-green {
+            --primary-color: #1b5e20;
+            --secondary-color: #2e7d32;
+            --accent-color: #4caf50;
+            --light-color: #e8f5e9;
+            --dark-color: #1b5e20;
+            --border-color: #c8e6c9;
+            --success-color: #388e3c;
+            --danger-color: #d32f2f;
+            --warning-color: #f57c00;
+            --info-color: #0288d1;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         body {
-            background-color: #f5f7fa;
+            background-color: var(--light-color);
             color: var(--dark-color);
             line-height: 1.6;
             padding: 10px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: background-color 0.3s, color 0.3s;
         }
         
         /* الهيدر */
@@ -51,6 +94,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            transition: all 0.3s;
         }
         
         .header-top {
@@ -125,13 +169,14 @@
         
         /* قسم الماسح الضوئي */
         .scanner-section {
-            background-color: white;
+            background-color: var(--light-color);
             border-radius: 10px;
             padding: 20px;
             box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
             gap: 20px;
+            transition: all 0.3s;
         }
         
         .scanner-container {
@@ -148,27 +193,44 @@
             overflow: hidden;
             border: 3px solid var(--border-color);
             transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .scanner-flash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0);
+            pointer-events: none;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        
+        .scanner-flash.active {
+            background-color: rgba(255, 255, 255, 0.7);
         }
         
         /* أضواء السكانر حسب الحالة */
         .scanner-success {
             border-color: var(--success-color) !important;
-            box-shadow: 0 0 15px rgba(40, 167, 69, 0.5);
+            box-shadow: 0 0 15px rgba(56, 142, 60, 0.5);
         }
         
         .scanner-error {
             border-color: var(--danger-color) !important;
-            box-shadow: 0 0 15px rgba(220, 53, 69, 0.5);
+            box-shadow: 0 0 15px rgba(211, 47, 47, 0.5);
         }
         
         .scanner-warning {
             border-color: var(--warning-color) !important;
-            box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+            box-shadow: 0 0 15px rgba(245, 124, 0, 0.5);
         }
         
         .scanner-info {
             border-color: var(--info-color) !important;
-            box-shadow: 0 0 15px rgba(23, 162, 184, 0.5);
+            box-shadow: 0 0 15px rgba(2, 136, 209, 0.5);
         }
         
         .scanner-controls {
@@ -180,11 +242,12 @@
         
         /* قسم معلومات المنتج الممسوح */
         .product-info {
-            background-color: #f8f9fa;
+            background-color: rgba(76, 175, 80, 0.1);
             border-radius: 8px;
             padding: 15px;
             border-left: 4px solid var(--accent-color);
             display: none;
+            transition: all 0.3s;
         }
         
         .product-info.show {
@@ -208,14 +271,16 @@
         
         .product-detail {
             padding: 8px;
-            background-color: white;
+            background-color: var(--light-color);
             border-radius: 4px;
             border: 1px solid var(--border-color);
+            transition: all 0.3s;
         }
         
         .product-detail .label {
             font-size: 0.8rem;
-            color: #6c757d;
+            color: var(--dark-color);
+            opacity: 0.7;
             margin-bottom: 2px;
         }
         
@@ -226,7 +291,7 @@
         
         /* قسم الجدول */
         .sheet-section {
-            background-color: white;
+            background-color: var(--light-color);
             border-radius: 10px;
             padding: 20px;
             box-shadow: var(--shadow);
@@ -234,6 +299,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            transition: all 0.3s;
         }
         
         .sheet-header {
@@ -286,7 +352,7 @@
         }
         
         .btn-success:hover {
-            background-color: #218838;
+            background-color: #2e7d32;
         }
         
         .btn-danger {
@@ -295,7 +361,7 @@
         }
         
         .btn-danger:hover {
-            background-color: #c82333;
+            background-color: #b71c1c;
         }
         
         .btn-accent {
@@ -304,7 +370,7 @@
         }
         
         .btn-accent:hover {
-            background-color: #218c68;
+            background-color: var(--primary-color);
         }
         
         .btn-warning {
@@ -313,7 +379,7 @@
         }
         
         .btn-warning:hover {
-            background-color: #e0a800;
+            background-color: #e65100;
         }
         
         /* الجدول */
@@ -322,6 +388,7 @@
             flex: 1;
             border: 1px solid var(--border-color);
             border-radius: 8px;
+            transition: all 0.3s;
         }
         
         table {
@@ -334,10 +401,11 @@
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s;
         }
         
         th {
-            background-color: #f1f5f9;
+            background-color: rgba(76, 175, 80, 0.1);
             font-weight: 700;
             color: var(--dark-color);
             position: sticky;
@@ -346,7 +414,7 @@
         }
         
         tr:hover {
-            background-color: #f8f9fa;
+            background-color: rgba(76, 175, 80, 0.05);
         }
         
         td.editable {
@@ -356,7 +424,7 @@
         
         td.editable:focus {
             outline: 2px solid var(--primary-color);
-            background-color: white;
+            background-color: var(--light-color);
         }
         
         .actions-cell {
@@ -384,10 +452,11 @@
         
         /* قسم المشاركة */
         .share-section {
-            background-color: white;
+            background-color: var(--light-color);
             border-radius: 10px;
             padding: 20px;
             box-shadow: var(--shadow);
+            transition: all 0.3s;
         }
         
         .share-controls {
@@ -417,15 +486,20 @@
             border: 1px solid var(--border-color);
             border-radius: 6px;
             font-size: 0.9rem;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            transition: all 0.3s;
         }
         
         /* الفوتر */
         footer {
             text-align: center;
             padding: 20px;
-            color: #6c757d;
+            color: var(--dark-color);
+            opacity: 0.7;
             font-size: 0.9rem;
             margin-top: 20px;
+            transition: all 0.3s;
         }
         
         /* رسائل */
@@ -434,26 +508,27 @@
             border-radius: 6px;
             margin-bottom: 15px;
             display: none;
+            transition: all 0.3s;
         }
         
         .message.success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background-color: rgba(76, 175, 80, 0.2);
+            color: var(--success-color);
+            border: 1px solid rgba(76, 175, 80, 0.3);
             display: block;
         }
         
         .message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+            background-color: rgba(211, 47, 47, 0.2);
+            color: var(--danger-color);
+            border: 1px solid rgba(211, 47, 47, 0.3);
             display: block;
         }
         
         .message.warning {
-            background-color: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeaa7;
+            background-color: rgba(245, 124, 0, 0.2);
+            color: var(--warning-color);
+            border: 1px solid rgba(245, 124, 0, 0.3);
             display: block;
         }
         
@@ -600,13 +675,13 @@
         }
         
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(45, 147, 108, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(45, 147, 108, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(45, 147, 108, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
         }
         
         .highlight {
-            background-color: #fff3cd !important;
+            background-color: rgba(255, 193, 7, 0.3) !important;
             transition: background-color 1.5s;
         }
         
@@ -688,44 +763,249 @@
             font-size: 0.85rem;
             padding: 5px 10px;
             border-radius: 15px;
-            background-color: #f8f9fa;
+            background-color: rgba(76, 175, 80, 0.1);
             border: 1px solid var(--border-color);
         }
         
         .sound-indicator.success {
             border-color: var(--success-color);
-            background-color: rgba(40, 167, 69, 0.1);
+            background-color: rgba(56, 142, 60, 0.2);
         }
         
         .sound-indicator.error {
             border-color: var(--danger-color);
-            background-color: rgba(220, 53, 69, 0.1);
+            background-color: rgba(211, 47, 47, 0.2);
         }
         
         .sound-indicator.warning {
             border-color: var(--warning-color);
-            background-color: rgba(255, 193, 7, 0.1);
+            background-color: rgba(245, 124, 0, 0.2);
         }
         
         .indicator-icon {
             font-size: 0.8rem;
         }
+        
+        /* إعدادات الصوت والإضاءة */
+        .settings-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .setting-btn {
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .setting-btn.active {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        /* تحكم السمات */
+        .theme-controls {
+            display: flex;
+            gap: 10px;
+            margin-left: auto;
+        }
+        
+        .theme-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .theme-btn.active {
+            border-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        .theme-btn.white {
+            background-color: #ffffff;
+        }
+        
+        .theme-btn.dark {
+            background-color: #263238;
+        }
+        
+        .theme-btn.green {
+            background-color: #2e7d32;
+        }
+        
+        /* زر إسكات الصوت */
+        .mute-btn {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .mute-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mute-btn.muted {
+            color: var(--warning-color);
+        }
+        
+        /* زر تحكم الفلاش */
+        .flash-btn {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .flash-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .flash-btn.active {
+            color: var(--warning-color);
+        }
+        
+        /* شريط الحالة */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .online-users {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .online-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--success-color);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        /* زر التحديث المباشر */
+        .realtime-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            transition: transform 0.3s;
+        }
+        
+        .realtime-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .realtime-btn.active {
+            background-color: var(--primary-color);
+            animation: pulse 2s infinite;
+        }
     </style>
 </head>
 <body>
+    <!-- الواجهة الرئيسية -->
     <header>
         <div class="header-top">
             <div class="logo">
                 <i class="fas fa-shopping-cart"></i>
                 <span>Product Scanner System</span>
             </div>
-            <div class="controls">
+            
+            <div class="theme-controls">
+                <button class="theme-btn white active" data-theme="theme-white" title="White Theme"></button>
+                <button class="theme-btn dark" data-theme="theme-dark" title="Dark Theme"></button>
+                <button class="theme-btn green" data-theme="theme-green" title="Green Theme"></button>
+            </div>
+            
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <button class="mute-btn" id="muteBtn" title="Toggle Sound">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="flash-btn" id="flashBtn" title="Toggle Flash Effect">
+                    <i class="fas fa-bolt"></i>
+                </button>
                 <button class="btn btn-accent" id="clearAllBtn">
                     <i class="fas fa-trash-alt"></i> Clear All
                 </button>
                 <button class="btn btn-success" id="exportBtn">
                     <i class="fas fa-file-export"></i> Export Table
                 </button>
+            </div>
+        </div>
+        
+        <!-- شريط الحالة -->
+        <div class="status-bar">
+            <div class="user-info">
+                <span id="userEmail">Guest User</span>
+                <span style="opacity: 0.8;">(No login required)</span>
+            </div>
+            
+            <div class="online-users" id="onlineUsers">
+                <span class="online-dot"></span>
+                <span>Local Mode</span>
             </div>
         </div>
         
@@ -776,7 +1056,9 @@
                 </div>
                 
                 <div class="scanner-container">
-                    <div id="reader"></div>
+                    <div id="reader">
+                        <div class="scanner-flash" id="scannerFlash"></div>
+                    </div>
                     
                     <div class="scanner-controls">
                         <button class="btn btn-primary" id="startScannerBtn">
@@ -787,6 +1069,16 @@
                         </button>
                         <button class="btn btn-accent" id="addManualBtn">
                             <i class="fas fa-plus"></i> Add Manually
+                        </button>
+                    </div>
+                    
+                    <!-- إعدادات الصوت والإضاءة -->
+                    <div class="settings-controls">
+                        <button class="setting-btn" id="toggleSoundBtn">
+                            <i class="fas fa-volume-up"></i> Sound: ON
+                        </button>
+                        <button class="setting-btn" id="toggleFlashBtn">
+                            <i class="fas fa-bolt"></i> Flash: OFF
                         </button>
                     </div>
                     
@@ -825,10 +1117,11 @@
                         <thead>
                             <tr>
                                 <th width="5%">#</th>
-                                <th width="20%">Product Code</th>
-                                <th width="25%">Product Name</th>
-                                <th width="15%">Price</th>
-                                <th width="15%">Quantity</th>
+                                <th width="15%">Product Code</th>
+                                <th width="20%">Product Name</th>
+                                <th width="15%">Category</th>
+                                <th width="10%">Price</th>
+                                <th width="10%">Quantity</th>
                                 <th width="15%">Total</th>
                                 <th width="10%">Actions</th>
                             </tr>
@@ -865,11 +1158,11 @@
                             <tr>
                                 <th width="5%">#</th>
                                 <th width="15%">Product Code</th>
-                                <th width="25%">Product Name</th>
+                                <th width="20%">Product Name</th>
                                 <th width="15%">Category</th>
                                 <th width="10%">Price</th>
                                 <th width="10%">Quantity</th>
-                                <th width="10%">Total</th>
+                                <th width="15%">Total</th>
                                 <th width="10%">Actions</th>
                             </tr>
                         </thead>
@@ -920,17 +1213,11 @@
                         </button>
                     </div>
                     
-                    <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">
+                    <div style="margin-top: 20px; padding: 15px; background-color: rgba(76, 175, 80, 0.1); border-radius: 8px;">
                         <h3><i class="fas fa-info-circle"></i> Sharing Information</h3>
                         <p>• Sharing links are valid for 30 days.</p>
                         <p>• Recipients can view and download the table but cannot edit it.</p>
-                        <p>• To enable shared editing, save the table to Google Sheets.</p>
-                        
-                        <div style="text-align: center; margin-top: 15px;">
-                            <button class="btn btn-primary" id="openGoogleSheetsBtn">
-                                <i class="fab fa-google"></i> Open in Google Sheets
-                            </button>
-                        </div>
+                        <p>• To enable shared editing, enable real-time synchronization.</p>
                     </div>
                 </div>
             </div>
@@ -940,9 +1227,6 @@
     <footer>
         <p>© 2023 Product Scanner System | Developed for easy product scanning and management</p>
     </footer>
-
-    <!-- إشعارات صغيرة -->
-    <div id="notification" class="notification"></div>
 
     <!-- عناصر الصوت المخفية -->
     <audio id="successSound" preload="auto">
@@ -964,46 +1248,75 @@
         let rowCounter = 1;
         let scannerActive = false;
         let html5QrCode;
+        let isMuted = false;
+        let flashEnabled = false;
+        let currentTheme = 'theme-white';
         
         // مكتبة المنتجات المحددة مسبقاً
-        const productLibrary = {
-            "123456789012": { name: "Milk 1L", price: "2.50", category: "Dairy" },
-            "234567890123": { name: "Bread White", price: "1.20", category: "Bakery" },
-            "345678901234": { name: "Eggs 12pcs", price: "3.00", category: "Dairy" },
-            "456789012345": { name: "Mineral Water 1.5L", price: "0.80", category: "Beverages" },
-            "567890123456": { name: "Rice 1kg", price: "2.00", category: "Grains" },
-            "678901234567": { name: "Pasta 500g", price: "1.50", category: "Grains" },
-            "789012345678": { name: "Tomato Sauce", price: "1.80", category: "Condiments" },
-            "890123456789": { name: "Sugar 1kg", price: "1.00", category: "Baking" },
-            "901234567890": { name: "Coffee 250g", price: "4.50", category: "Beverages" },
-            "012345678901": { name: "Tea Bags 100pcs", price: "3.20", category: "Beverages" },
-            "112233445566": { name: "Cooking Oil 1L", price: "3.50", category: "Cooking" },
-            "223344556677": { name: "Flour 1kg", price: "1.20", category: "Baking" },
-            "334455667788": { name: "Butter 250g", price: "2.80", category: "Dairy" },
-            "445566778899": { name: "Cheese 200g", price: "3.20", category: "Dairy" },
-            "556677889900": { name: "Yogurt 500g", price: "1.50", category: "Dairy" },
-            "667788990011": { name: "Apple Juice 1L", price: "2.00", category: "Beverages" },
-            "778899001122": { name: "Cereal 500g", price: "3.50", category: "Breakfast" },
-            "889900112233": { name: "Cookies 300g", price: "2.00", category: "Snacks" },
-            "990011223344": { name: "Chocolate Bar", price: "1.50", category: "Snacks" },
-            "001122334455": { name: "Soap Bar", price: "0.80", category: "Personal Care" }
-        };
+        const productLibrary = {};
+        // إنشاء 10000 منتج عشوائي
+        for (let i = 0; i < 10000; i++) {
+            const barcode = String(i).padStart(12, '0');
+            const categories = ['Dairy', 'Bakery', 'Beverages', 'Grains', 'Condiments', 'Baking', 'Cooking', 'Snacks', 'Personal Care', 'Frozen'];
+            const names = [
+                'Milk', 'Bread', 'Eggs', 'Water', 'Rice', 'Pasta', 'Sauce', 'Sugar', 'Coffee', 'Tea',
+                'Oil', 'Flour', 'Butter', 'Cheese', 'Yogurt', 'Juice', 'Cereal', 'Cookies', 'Chocolate', 'Soap',
+                'Shampoo', 'Toothpaste', 'Tissue', 'Napkins', 'Detergent', 'Bleach', 'Sponge', 'Trash Bags', 'Foil', 'Plastic Wrap'
+            ];
+            const brands = ['Premium', 'Organic', 'Family', 'Value', 'Gold', 'Select', 'Farm', 'Nature', 'Pure', 'Fresh'];
+            
+            const category = categories[Math.floor(Math.random() * categories.length)];
+            const name = `${brands[Math.floor(Math.random() * brands.length)]} ${names[Math.floor(Math.random() * names.length)]}`;
+            const price = (Math.random() * 20 + 0.5).toFixed(2);
+            
+            productLibrary[barcode] = { name, price, category };
+        }
         
         // تهيئة التطبيق
         document.addEventListener('DOMContentLoaded', function() {
-            // تحميل البيانات المحفوظة من localStorage
+            initTheme();
             loadSavedData();
             
             initTabs();
             initTable();
             initScanner();
             initButtons();
+            initSettings();
             updateFullSheetTable();
             calculateGrandTotal();
-            
-            // إظهار إشعار التحميل
-            showNotification('Data loaded from local storage', 'success');
         });
+        
+        // تهيئة السمات
+        function initTheme() {
+            const themeBtns = document.querySelectorAll('.theme-btn');
+            const savedTheme = localStorage.getItem('scannerTheme') || 'theme-white';
+            
+            // تطبيق السمة المحفوظة
+            applyTheme(savedTheme);
+            
+            themeBtns.forEach(btn => {
+                if (btn.dataset.theme === savedTheme) {
+                    btn.classList.add('active');
+                }
+                
+                btn.addEventListener('click', function() {
+                    const theme = this.dataset.theme;
+                    applyTheme(theme);
+                    
+                    themeBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    localStorage.setItem('scannerTheme', theme);
+                });
+            });
+        }
+        
+        // تطبيق السمة
+        function applyTheme(theme) {
+            document.body.classList.remove('theme-dark', 'theme-white', 'theme-green');
+            document.body.classList.add(theme);
+            currentTheme = theme;
+        }
         
         // تحميل البيانات المحفوظة
         function loadSavedData() {
@@ -1031,10 +1344,6 @@
         function saveDataToStorage() {
             try {
                 localStorage.setItem('productScannerData', JSON.stringify(products));
-                console.log(`Saved ${products.length} products to storage`);
-                
-                // إظهار إشعار حفظ صغير
-                showNotification('Data saved automatically', 'info');
                 return true;
             } catch (e) {
                 console.error('Error saving data:', e);
@@ -1115,6 +1424,8 @@
             input.style.padding = '5px';
             input.style.fontSize = 'inherit';
             input.style.fontFamily = 'inherit';
+            input.style.backgroundColor = 'transparent';
+            input.style.color = 'inherit';
             
             // مسح محتوى الخلية وإضافة حقل الإدخال
             cell.textContent = '';
@@ -1192,6 +1503,8 @@
         
         // تشغيل صوت
         function playSound(soundId) {
+            if (isMuted) return;
+            
             try {
                 const sound = document.getElementById(soundId);
                 sound.currentTime = 0;
@@ -1199,6 +1512,18 @@
             } catch (e) {
                 console.error("Error playing sound:", e);
             }
+        }
+        
+        // تشغيل فلاش
+        function triggerFlash() {
+            if (!flashEnabled) return;
+            
+            const flash = document.getElementById('scannerFlash');
+            flash.classList.add('active');
+            
+            setTimeout(() => {
+                flash.classList.remove('active');
+            }, 200);
         }
         
         // تغيير لون إطار السكانر
@@ -1243,6 +1568,7 @@
                 if (scannerActive) {
                     // صوت المسح الضوئي
                     playSound('scanSound');
+                    triggerFlash();
                     
                     // إيقاف الماسح مؤقتاً
                     stopScanner();
@@ -1384,6 +1710,7 @@
                 <td>${product.id}</td>
                 <td class="editable" data-field="code">${product.code}</td>
                 <td class="editable" data-field="name">${product.name}</td>
+                <td class="editable" data-field="category">${product.category}</td>
                 <td class="editable" data-field="price">${product.price}</td>
                 <td class="editable" data-field="quantity">${product.quantity}</td>
                 <td data-field="total">${product.total}</td>
@@ -1419,10 +1746,10 @@
                     <td>${row.cells[0].textContent}</td>
                     <td>${row.cells[1].textContent}</td>
                     <td>${row.cells[2].textContent}</td>
-                    <td>General</td>
                     <td>${row.cells[3].textContent}</td>
                     <td>${row.cells[4].textContent}</td>
                     <td>${row.cells[5].textContent}</td>
+                    <td>${row.cells[6].textContent}</td>
                     <td class="actions-cell">
                         <button class="action-btn delete" title="Delete">
                             <i class="fas fa-trash"></i>
@@ -1445,6 +1772,34 @@
             
             document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
             saveDataToStorage();
+        }
+        
+        // تهيئة الإعدادات
+        function initSettings() {
+            // إسكات الصوت
+            document.getElementById('muteBtn').addEventListener('click', function() {
+                isMuted = !isMuted;
+                this.classList.toggle('muted', isMuted);
+                this.innerHTML = isMuted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+                
+                document.getElementById('toggleSoundBtn').innerHTML = isMuted ? 
+                    '<i class="fas fa-volume-mute"></i> Sound: OFF' : 
+                    '<i class="fas fa-volume-up"></i> Sound: ON';
+                
+                showNotification(isMuted ? 'Sound muted' : 'Sound unmuted', 'info');
+            });
+            
+            // تحكم الفلاش
+            document.getElementById('flashBtn').addEventListener('click', function() {
+                flashEnabled = !flashEnabled;
+                this.classList.toggle('active', flashEnabled);
+                
+                document.getElementById('toggleFlashBtn').innerHTML = flashEnabled ? 
+                    '<i class="fas fa-bolt"></i> Flash: ON' : 
+                    '<i class="fas fa-bolt"></i> Flash: OFF';
+                
+                showNotification(flashEnabled ? 'Flash enabled' : 'Flash disabled', 'info');
+            });
         }
         
         // تهيئة الأزرار
@@ -1500,9 +1855,6 @@
             // حفظ كملف
             document.getElementById('saveToFileBtn').addEventListener('click', saveTableToFile);
             
-            // فتح في Google Sheets
-            document.getElementById('openGoogleSheetsBtn').addEventListener('click', openInGoogleSheets);
-            
             // حساب الإجمالي
             document.getElementById('calculateTotalBtn').addEventListener('click', calculateGrandTotal);
             
@@ -1518,6 +1870,7 @@
                 id: rowCounter++,
                 code: `NEW${Date.now().toString().slice(-6)}`,
                 name: 'New Product',
+                category: 'General',
                 price: '0.00',
                 quantity: '1',
                 total: '0.00'
@@ -1532,7 +1885,7 @@
         // تصدير الجدول
         function exportTable() {
             const rows = [];
-            const header = ['#', 'Product Code', 'Product Name', 'Price', 'Quantity', 'Total'];
+            const header = ['#', 'Product Code', 'Product Name', 'Category', 'Price', 'Quantity', 'Total'];
             rows.push(header.join(','));
             
             const tableRows = document.querySelectorAll('#tableBody tr');
@@ -1543,7 +1896,8 @@
                     row.cells[2].textContent,
                     row.cells[3].textContent,
                     row.cells[4].textContent,
-                    row.cells[5].textContent
+                    row.cells[5].textContent,
+                    row.cells[6].textContent
                 ];
                 rows.push(rowData.join(','));
             });
@@ -1570,9 +1924,6 @@
             const jsonData = JSON.stringify(tableData);
             const csvData = convertToCSV(tableData);
             
-            // في تطبيق حقيقي، هنا يتم رفع البيانات إلى خادم والحصول على روابط حقيقية
-            // لكننا سنقوم بمحاكاة ذلك
-            
             const baseUrl = window.location.href.split('#')[0];
             document.getElementById('jsonLink').value = `${baseUrl}#data=${btoa(jsonData)}`;
             document.getElementById('csvLink').value = `${baseUrl}#csv=${btoa(csvData)}`;
@@ -1590,9 +1941,10 @@
                     id: row.cells[0].textContent,
                     code: row.cells[1].textContent,
                     name: row.cells[2].textContent,
-                    price: row.cells[3].textContent,
-                    quantity: row.cells[4].textContent,
-                    total: row.cells[5].textContent
+                    category: row.cells[3].textContent,
+                    price: row.cells[4].textContent,
+                    quantity: row.cells[5].textContent,
+                    total: row.cells[6].textContent
                 });
             });
             
@@ -1646,24 +1998,6 @@
             showMessage('Table saved as JSON file', 'success');
         }
         
-        // فتح في Google Sheets (محاكاة)
-        function openInGoogleSheets() {
-            showMessage('Opening in Google Sheets. In a real app, data would be uploaded to Google Sheets.', 'success');
-            
-            // محاكاة التأخير
-            setTimeout(() => {
-                const tableData = getTableData();
-                const csvData = convertToCSV(tableData);
-                const encodedData = encodeURIComponent(csvData);
-                
-                // رابط Google Sheets لإنشاء جدول جديد
-                const googleSheetsUrl = `https://docs.google.com/spreadsheets/create?usp=sharing&data=${encodedData}`;
-                
-                // فتح نافذة جديدة
-                window.open(googleSheetsUrl, '_blank');
-            }, 1000);
-        }
-        
         // عرض الرسائل
         function showMessage(text, type) {
             const messageEl = document.getElementById('message');
@@ -1678,13 +2012,24 @@
         
         // عرض إشعار صغير
         function showNotification(text, type) {
-            const notification = document.getElementById('notification');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
             notification.textContent = text;
-            notification.className = `notification ${type} show`;
+            document.body.appendChild(notification);
+            
+            // عرض الإشعار
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
             
             // إخفاء الإشعار بعد 3 ثوانٍ
             setTimeout(() => {
                 notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
             }, 3000);
         }
     </script>
